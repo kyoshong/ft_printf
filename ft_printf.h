@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 16:10:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/08 20:02:02 by hyospark         ###   ########.fr       */
+/*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
+/*   Updated: 2021/02/09 23:41:13 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	slen;
-	size_t	j;
-
-	if (len == 0 && start > len)
-		return ("");
-	if (!s || !(str = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	slen = ft_strlen(s);
-	j = 0;
-	while (j < len && s[start] != '\0' && start <= slen)
-		str[j++] = s[start++];
-	str[j] = '\0';
-	return (str);
-}
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdio.h>
+# include <stdarg.h> 
+#endif

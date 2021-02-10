@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 20:23:33 by hyospark          #+#    #+#             */
-/*   Updated: 2021/01/19 20:55:30 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/08 19:59:40 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	if (!s1 || !set)
 		return (NULL);
+	if (s1 == set)
+		return ("");
 	while (s1[start] && check_str(s1[start], set))
 		start++;
 	end = ft_strlen(s1);
