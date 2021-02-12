@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"cstdio": "c"
+		"cstdio": "c",
+		"ostream": "c",
+		"algorithm": "c",
+		"cstdarg": "c",
+		"stdarg.h": "c",
+		"unistd.h": "c"
 	}
 }

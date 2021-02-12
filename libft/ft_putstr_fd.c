@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 18:10:23 by hyospark          #+#    #+#             */
-/*   Updated: 2021/01/18 21:06:26 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/12 19:54:03 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!(s) || fd < 0)
+	if (!s || fd < 0)
 		return ;
 	write(fd, s, ft_strlen(s));
 }
