@@ -13,7 +13,6 @@
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"console": "externalTerminal",
 			"MIMode": "lldb",
 			"preLaunchTask": "C/C++: gcc 활성 파일 빌드"
 		}

@@ -6,48 +6,55 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/12 22:29:54 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:13:24 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
+# include "ft_printf.h"
 
-int	ft_flag(char f)
+void	ft_make_format(va_list ap, int i, char *arg)
 {
+	t_flags		flags;
 	
-}
-
-int	ft_format_spec(const char c, va_list ap)
-{
-	if (c == 's')
-		ft_putchar_fd(va_arg(ap, char *), 1);
-	else if (c == 'c')
-		ft_putstr_fd(va_arg(ap, char), 1);
-	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(ap, int), 1);
-	else if (c == 'f')
-		ft_
-
+	flags = ft_flags_set();
+	while (!ft_format_spec_check(arg[i]))
+	{
+		if (ft_flag_check(arg[i]))
+		{
+			ft_flags(arg[i]);
+			if (flags.star)
+				flags.width = va_arg(ap, int);
+			else if (flags.width == -1)
+				i = ft_width_set(i ,arg, &flags);
+			if (flags.dot_n == -1)
+				
+		}
+	}
+	if (ft_format_spec_check(arg[i]))
+		ft_format_spec(arg[++i], ap, i);
 }
 
 int ft_printf(const char *arg, ...)
 {
-	va_list	ap;
-	int		i;
+	va_list		ap;
+	int			i;
+	static int	word_count;
 
+	word_count = 0;
 	i = 0;
 	va_start(ap, arg);
 	while (arg[i])
 	{
-		if (arg[i] == '%')
+		if (arg[i] == '%' && arg[i + 1])
 		{
-			ft_format_spec(arg[++i], ap);
+			ft_make_format(&ap, i, arg);
 		}
-		write(1, arg[i], 1);
+		else if(arg[i] != '%')
+			write(1, &arg[i], 1);
 		i++;
 	}
 	va_end(ap);
+	return (g_return_num);
 }
 
 int main(int argc, char const *argv[])
@@ -55,6 +62,8 @@ int main(int argc, char const *argv[])
 	int a;
 
 	a = 10;
-	ft_printf("a : %d", a);
+	ft_printf("a : cspdiuxX", a);
+	//모든 서식문자에서 ‘-0.*’ 플래그와 최소 필드 너비의 조합을 어떤 조합도 처리할 것입니다.
+	//실제 printf 함수와 비교될 것입니다.
 	return 0;
 }
