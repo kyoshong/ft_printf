@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/13 22:56:31 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:50:04 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,23 @@ void	ft_format_spec(char c, va_list ap, int i)
 		write(1, '%', 1);
 }
 
-void	ft_flags(char c, t_flags f)
+int	ft_flags(char i, char *arg, t_flags f, va_list ap)
 {
-	if (c == '-')
+	if (arg[i] == '-')
 		f.left_sort = 1;
-	if (c == ' ')
+	else if (arg[i] == ' ')
 		f.blank = 1;
-	if (c == '+')
+	else if (arg[i] == '+')
 		f.plus = 1;
-	if (c == '#')
+	else if (arg[i] == '#')
 		f.cross = 1;
-	if (c == '0')
+	else if (arg[i] == '0')
 		f.zero = 1;
-	if (c == '*')
-		f.star = 1;
-	else if (c >= 49 && c <= 57)
-		f.width = -1;
-	if (c == '.')
-		f.dot_n = -1;
+	else if (arg[i] == '*')
+		f.width = va_arg(ap, int);
+	else if (arg[i] >= 49 && arg[i] <= 57)
+		i = ft_width_set(++i ,arg, &f);
+	else if (arg[i] == '.')
+		i = ft_set_precision(i, arg, &f);
+	return i;
 }

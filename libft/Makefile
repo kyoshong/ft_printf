@@ -2,7 +2,7 @@ NAME=libft.a
 
 CC=gcc
 
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-c -Wall -Wextra -Werror
 
 RM=rm -f
 
@@ -39,4 +39,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re all bonus so
+.PHONY: clean fclean re all bonus

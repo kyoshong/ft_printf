@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/14 18:13:11 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:31:36 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	ft_print_putnbr(int n);
 void	ft_count_n(int *n, int count);
 t_flags	ft_flags_set(void);
 int		ft_width_set(int i, char *arg, t_flags *flags);
+int		ft_set_precision(int i, char *arg, t_flags *flags);
 
 #endif
