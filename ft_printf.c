@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/14 20:11:55 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/16 23:59:34 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_make_format(va_list ap, int i, char *arg)
 	{
 		if (ft_flag_check(arg[i]))
 		{
-			i = ft_flags(i, arg, &flags, ap);
+			i = ft_flags(i, arg, flags, ap);
 			i++;
 		}
 		else
-			return (0);
+			return ;
 	}
-	if (ft_format_spec_check(arg[i]))
-		ft_format_spec(arg[++i], ap, i);
+	if (ft_format_spec_check(arg[i++]))
+		ft_format_spec(arg[i], ap, i);
 }
 
 int ft_printf(const char *arg, ...)
@@ -44,7 +44,7 @@ int ft_printf(const char *arg, ...)
 	{
 		if (arg[i] == '%' && arg[i + 1])
 		{
-			ft_make_format(&ap, i, arg);
+			ft_make_format(ap, i, *arg);
 		}
 		else if(arg[i] != '%')
 			write(1, &arg[i], 1);
@@ -54,13 +54,13 @@ int ft_printf(const char *arg, ...)
 	return (g_return_num);
 }
 
-int main(int argc, char const *argv[])
-{
-	int a;
+// int main(int argc, char const *argv[])
+// {
+// 	int a;
 
-	a = 10;
-	ft_printf("a : cspdiuxX", a);
-	//모든 서식문자에서 ‘-0.*’ 플래그와 최소 필드 너비의 조합을 어떤 조합도 처리할 것입니다.
-	//실제 printf 함수와 비교될 것입니다.
-	return 0;
-}
+// 	a = 10;
+// 	ft_printf("a : cspdiuxX", a);
+// 	//모든 서식문자에서 ‘-0.*’ 플래그와 최소 필드 너비의 조합을 어떤 조합도 처리할 것입니다.
+// 	//실제 printf 함수와 비교될 것입니다.
+// 	return 0;
+// }
