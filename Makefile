@@ -15,6 +15,7 @@ SRC=ft_count_n.c \
 
 OBJ=$(SRC:.c=.o)
 
+LIBFT = ./libft/libft.a
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)

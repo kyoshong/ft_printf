@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/14 19:50:04 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/17 00:34:29 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_format_spec(char c, va_list ap, int i)
 		write(1, '%', 1);
 }
 
-int	ft_flags(char i, char *arg, t_flags f, va_list ap)
+int	ft_flags(char i, const char *arg, t_flags f, va_list ap)
 {
 	if (arg[i] == '-')
 		f.left_sort = 1;

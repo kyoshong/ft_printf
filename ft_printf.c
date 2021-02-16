@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/16 23:59:34 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/17 00:35:54 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-void	ft_make_format(va_list ap, int i, char *arg)
+void	ft_make_format(va_list ap, int i, const char *arg)
 {
 	t_flags		flags;
 	
@@ -36,18 +36,20 @@ int ft_printf(const char *arg, ...)
 	va_list		ap;
 	int			i;
 	static int	word_count;
+	const char	*copy;
 
 	word_count = 0;
 	i = 0;
+	copy = ft_strdup(arg);
 	va_start(ap, arg);
-	while (arg[i])
+	while (copy[i])
 	{
-		if (arg[i] == '%' && arg[i + 1])
+		if (copy[i] == '%' && copy[i + 1])
 		{
-			ft_make_format(ap, i, *arg);
+			ft_make_format(ap, i, copy);
 		}
-		else if(arg[i] != '%')
-			write(1, &arg[i], 1);
+		else if(copy[i] != '%')
+			write(1, &copy[i], 1);
 		i++;
 	}
 	va_end(ap);
