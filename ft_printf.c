@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 02:10:38 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:18:16 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-void	ft_make_format(va_list ap, int i, const char *arg)
+int	ft_make_format(va_list *ap, int i, const char *arg)
 {
 	t_flags	flags;
 	int		count;
@@ -26,21 +26,20 @@ void	ft_make_format(va_list ap, int i, const char *arg)
 			i++;
 		}
 		else
-			return ;
+			return (count);
 	}
 	if (ft_format_spec_check(arg[i]))
-		ft_format_spec(arg[i], ap, i, &flags);
-	return (count)
+		count += ft_format_spec(arg[i], ap, i, &flags);
+	return (count);
 }
 
 int ft_printf(const char *arg, ...)
 {
 	va_list		ap;
 	int			i;
-	static int	word_count;
 	const char	*copy;
+	int			count;
 
-	word_count = 0;
 	i = 0;
 	if (arg == "")
 		return (0);
@@ -49,16 +48,16 @@ int ft_printf(const char *arg, ...)
 	while (copy[i])
 	{
 		if (copy[i] == '%' && copy[i + 1])
-			ft_make_format(ap, ++i, copy);
+			count += ft_make_format(ap, ++i, copy);
 		else if(copy[i] != '%')
 		{
 			write(1, &copy[i], 1);
-			word_count++;
+			count++;
 		}
 		i++;
 	}
 	va_end(ap);
-	return (g_return_num);
+	return (count);
 }
 
 // int main(int argc, char const *argv[])

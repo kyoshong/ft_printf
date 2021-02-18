@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/18 21:48:11 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:13:18 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_flags
 	int	star;
 }				t_flags;
 
-int		g_return_num;
 
 int		ft_format_spec_check(char f);
 int		ft_width_set(int i, const char *arg, t_flags *flags);
@@ -43,12 +42,12 @@ int		ft_format_spec(char c, va_list ap, int i, t_flags *flags);
 int		ft_putnbr_unsigned(unsigned int n);
 int		ft_putnbr(int n);
 int		ft_print_putnbr(int n, int i);
+int		ft_make_format(va_list ap, int i, const char *arg);
 
 void	ft_putbase_upper(unsigned int n);
 void	ft_print_base_lower(unsigned int n);
 void	ft_putbase_lower(unsigned int n);
 void	ft_count_n(int *n, int count);
-void	ft_make_format(va_list ap, int i, const char *arg);
 void	ft_print_base_upper(unsigned int n);
 
 t_flags	ft_flags_set(void);
