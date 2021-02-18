@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 22:22:17 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/17 00:33:48 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:10:36 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		ft_width_set(int i, const char *arg, t_flags *flags)
 
 	len = 0;
 	backup = i;
+	if (flags->width != 0)
+		return (i);
 	while (!(arg[i] >= 49 && 57 >= arg[i]))
 	{
 		i++;
@@ -34,7 +36,7 @@ int		ft_width_set(int i, const char *arg, t_flags *flags)
 	tem[j] = '\0';
 	flags->width = ft_atoi(tem);
 	free(tem);
-	return (i);
+	return (i - 1);
 }
 
 int		ft_set_precision(int i, const char *arg, t_flags *flags)
@@ -45,8 +47,8 @@ int		ft_set_precision(int i, const char *arg, t_flags *flags)
 	int		backup;
 
 	len = 0;
-	backup = i++;
-	while (!(arg[i] >= 49 && 57 >= arg[i]))
+	backup = i;
+	while (!(arg[i] >= 48 && 57 >= arg[i]))
 	{
 		i++;
 		len++;
@@ -59,5 +61,10 @@ int		ft_set_precision(int i, const char *arg, t_flags *flags)
 	tem[j] = '\0';
 	flags->dot_n = ft_atoi(tem);
 	free(tem);
-	return (i);
+	return (i - 1);
+}
+
+void	ft_count_n(int *n, int count)
+{
+	*n = count;
 }

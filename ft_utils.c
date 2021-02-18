@@ -6,23 +6,23 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/17 00:34:29 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:51:12 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-t_flags	ft_flags_set(void)
+t_flags	ft_set_flags(void)
 {
 	t_flags	flags;
 	
 	flags.width = 0;
 	flags.zero = 0;
 	flags.left_sort = 0;
-	flags.dot_n = 0;
+	flags.dot_n = -1;
 	flags.plus = 0;
 	flags.blank = 0;
-	flags.cross = 0;
+	flags.hash = 0;
 	return (flags);
 }
 
@@ -38,14 +38,17 @@ int	ft_flag_check(char f)
 			f == '0' || f == '*' || f == '.'|| (f >= 48 && f <= 57));
 }
 
-void	ft_format_spec(char c, va_list ap, int i)
+int		ft_format_spec(char c, va_list ap, int i, t_flags *flags)
 {
+	int		count;
+
+	count = 0;
 	if (c == 's')
-		ft_putchar_fd(va_arg(ap, char *), 1);
+		count = ft_get_str(va_arg(ap, char *), flags);
 	else if (c == 'c')
-		ft_putstr_fd(va_arg(ap, char), 1);
+		count = ft_get_char(va_arg(ap, char), flags);
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(ap, int));
+		count = ft_putnbr(va_arg(ap, int));
 	else if (c == 'x')
 		ft_putbase_lower(va_arg(ap, unsigned int));
 	else if (c == 'X')
@@ -55,7 +58,11 @@ void	ft_format_spec(char c, va_list ap, int i)
 	else if (c == 'n')
 		ft_count_n(va_arg(ap, int *), (i - 1));
 	else if (c == '%')
+	{
 		write(1, '%', 1);
+		count = 1;
+	}
+	return (count);
 }
 
 int	ft_flags(char i, const char *arg, t_flags f, va_list ap)
@@ -67,14 +74,18 @@ int	ft_flags(char i, const char *arg, t_flags f, va_list ap)
 	else if (arg[i] == '+')
 		f.plus = 1;
 	else if (arg[i] == '#')
-		f.cross = 1;
+		f.hash = 1;
 	else if (arg[i] == '0')
 		f.zero = 1;
 	else if (arg[i] == '*')
+	{
+		if (f.width != 0)
+			return (i);
 		f.width = va_arg(ap, int);
+	}
 	else if (arg[i] >= 49 && arg[i] <= 57)
-		i = ft_width_set(++i ,arg, &f);
+		i = ft_width_set(i ,arg, &f);
 	else if (arg[i] == '.')
-		i = ft_set_precision(i, arg, &f);
+		i = ft_set_precision((i + 1), arg, &f);
 	return i;
 }

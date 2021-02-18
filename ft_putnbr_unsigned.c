@@ -6,37 +6,46 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 03:46:02 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/13 03:59:01 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/18 03:01:22 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void	ft_print_putnbr(int n)
+int		ft_print_putnbr(int n , int i)
 {
 	if (n > 9)
-		ft_print_putnbr(n / 10);
+		i += ft_print_putnbr(n / 10, i);
 	write(1, &"0123456789"[n % 10], 1);
+	i++;
+	return (i);
 }
 
-void	ft_putnbr_fd(int n)
+int	ft_putnbr(int n)
 {
+	int	i;
 
+	i = 0;
 	if (n == INT_MIN)
 	{
 		write(1, "-2147483648", 11);
-		return ;
+		return (11);
 	}
 	if (n < 0)
 	{
 		write(1, "-", 1);
+		i++;
 		n *= -1;
 	}
-	ft_print_putnbr(n);
+	i += ft_print_putnbr(n, i);
+	return (i);
 }
 
-void	ft_putnbr_unsigned(unsigned int n)
+int		ft_putnbr_unsigned(unsigned int n)
 {
-	ft_print_putnbr(n);
+	int	i;
+
+	i = 0;
+	i = ft_print_putnbr(n, i);
+	return (i);
 }
