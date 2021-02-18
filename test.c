@@ -13,12 +13,14 @@ void	*ft_memset(void *ptr, int val, unsigned int s)
 
 int main()
 {
-	char	c = 'a';
-	char	s[6] = "1.5678";
-	int		a = 1;
+	int	c = 2;
+	char	*s = "1";
+	char	*b = "123";
+	int		a = 11;
 	float f = 10.999;
 	unsigned u = 12345;
-	int d = -1;
+	int d = 1;
+
 	//char *set_str;
 
 	//set_str = s;
@@ -32,10 +34,11 @@ int main()
 	//printf("%+p\n", d);
 	//printf("%.1p\n", d);
 	//printf("%n\n", d);
-	
-	printf("%dll\n", d);
+	//int s = d - c;
+	printf("%10d\n", d);
 	//ft_memset(set_str, 32, 9);
 	//printf("%s\n", set_str);
-
+	// s = b;
+	// printf("%s\n", s);
 	return 0;
 }

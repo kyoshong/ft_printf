@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/18 21:48:01 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:10:38 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_make_format(va_list ap, int i, const char *arg)
 {
-	t_flags		flags;
+	t_flags	flags;
+	int		count;
 	
 	flags = ft_flags_set();
 	while (!ft_format_spec_check(arg[i]))
@@ -29,6 +30,7 @@ void	ft_make_format(va_list ap, int i, const char *arg)
 	}
 	if (ft_format_spec_check(arg[i]))
 		ft_format_spec(arg[i], ap, i, &flags);
+	return (count)
 }
 
 int ft_printf(const char *arg, ...)
@@ -40,16 +42,14 @@ int ft_printf(const char *arg, ...)
 
 	word_count = 0;
 	i = 0;
-	copy = ft_strdup(arg);
 	if (arg == "")
 		return (0);
+	copy = ft_strdup(arg);
 	va_start(ap, copy);
 	while (copy[i])
 	{
 		if (copy[i] == '%' && copy[i + 1])
-		{
 			ft_make_format(ap, ++i, copy);
-		}
 		else if(copy[i] != '%')
 		{
 			write(1, &copy[i], 1);
