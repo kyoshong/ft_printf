@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 02:13:18 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:01:33 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_putbase_upper(unsigned int n);
 void	ft_print_base_lower(unsigned int n);
 void	ft_putbase_lower(unsigned int n);
 void	ft_count_n(int *n, int count);
-void	ft_print_base_upper(unsigned int n);
+char	*ft_print_base_upper(unsigned int n, char *stack, int len);
 
 t_flags	ft_flags_set(void);
 
