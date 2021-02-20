@@ -6,29 +6,33 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:15:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 02:23:11 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/20 18:49:14 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		*ft_get_str(char *str, t_flags *f)
+int		ft_handle_str(char *str, t_flags *f)
 {
 	char	*empty_str;
 	char	*fin_str;
 	int		i;
 	int		width;
 
+	if (f->dot_n == 0)
+	{
+		ft_putstr_fd("", 1);
+		return (1);
+	}
 	if (f->dot_n > 0)
 		str[f->dot_n] = '\0';
-	width = f->width - ft_strlen(str);
-	if (width > 0)
+	if ((width = f->width - ft_strlen(str)) > 0)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return ;
 		ft_memset(empty_str, 32, width);
 		if (f->left_sort)
-			fin_str = ft_strjoin(str, empty_str);
+			str = ft_strjoin(str, empty_str);
 		else
 			fin_str = ft_strjoin(empty_str, str);
 		free(empty_str);
@@ -39,15 +43,14 @@ int		*ft_get_str(char *str, t_flags *f)
 	return (ft_strlen(str));
 }
 
-int		ft_get_char(char c, t_flags *f)
+int		ft_handle_char(char c, t_flags *f)
 {
 	char	*empty_str;
 	char	*fin_str;
 	int		i;
 	int		width;
 
-	width = f->width - 1;
-	if (width > 0)
+	if ((width = f->width - 1) > 0)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return ;

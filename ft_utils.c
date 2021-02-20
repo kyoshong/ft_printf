@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 02:05:48 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/20 15:02:07 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ int		ft_format_spec(char c, va_list ap, int i, t_flags *flags)
 
 	count = 0;
 	if (c == 's')
-		count = ft_get_str(va_arg(ap, char *), &flags);
+		count = ft_handle_str(va_arg(ap, char *), &flags);
 	else if (c == 'c')
-		count = ft_get_char(va_arg(ap, char), &flags);
+		count = ft_handle_char(va_arg(ap, char), &flags);
 	else if (c == 'd' || c == 'i')
-		count = ft_get_int(va_arg(ap, int), &flags);
+		count = ft_handle_int(va_arg(ap, int), &flags);
 	else if (c == 'x')
-		ft_putbase_lower(va_arg(ap, unsigned int));
+		count = ft_handle_unsigned_int(va_arg(ap, unsigned int));
 	else if (c == 'X')
-		ft_putbase_upper(va_arg(ap, unsigned int));
+		ft_putbase_lower(va_arg(ap, unsigned int));
 	else if (c == 'u')
 		ft_putnbr_unsigned(va_arg(ap, unsigned int));
 	else if (c == 'n')

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 14:01:33 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/20 20:13:48 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include "libft/libft.h"
-# include <stdio.h>
 # include <stdarg.h> 
 # include <unistd.h>
 # include <stdlib.h>
@@ -42,13 +41,13 @@ int		ft_format_spec(char c, va_list ap, int i, t_flags *flags);
 int		ft_putnbr_unsigned(unsigned int n);
 int		ft_putnbr(int n);
 int		ft_print_putnbr(int n, int i);
-int		ft_make_format(va_list ap, int i, const char *arg);
-
+int		ft_make_format(va_list *ap, int i, const char *arg);
 void	ft_putbase_upper(unsigned int n);
 void	ft_print_base_lower(unsigned int n);
 void	ft_putbase_lower(unsigned int n);
 void	ft_count_n(int *n, int count);
 char	*ft_print_base_upper(unsigned int n, char *stack, int len);
+char	*ft_int_width_set(char *str, t_flags *f, int width, int set);
 
 t_flags	ft_flags_set(void);
 

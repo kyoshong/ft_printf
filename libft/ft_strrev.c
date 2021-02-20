@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/22 18:40:55 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 23:46:48 by hyospark         ###   ########.fr       */
+/*   Created: 2021/02/19 23:32:23 by hyospark          #+#    #+#             */
+/*   Updated: 2021/02/20 00:08:55 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char const *str)
+char	*ft_strrev(const char *s)
 {
-	size_t	i;
+	char	*str;
+	size_t	slen;
+	size_t	j;
+	size_t	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = ft_strlen(s);
+	slen = len;
+	if (len == 0)
+		return ("");
+	if (!s || !(str = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	j = 0;
+	len--;
+	while (j < slen)
+		str[j++] = s[len--];
+	str[j] = '\0';
+	return (str);
 }
