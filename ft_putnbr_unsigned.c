@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 03:46:02 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/18 03:01:22 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:42:43 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int		ft_putnbr_unsigned(unsigned int n)
 	int	i;
 
 	i = 0;
-	i = ft_print_putnbr(n, i);
+	i = ft_print_putnbr((int)n, i);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/20 20:08:17 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:40:32 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int		ft_handle_int(int d, t_flags *f)
 {
 	char	*tem_str;
-	int		i;
 	int		width;
 
 	tem_str = ft_itoa(d);
-	if (f->dot_n > ft_strlen(tem_str))
-		tem_str = ft_int_dot_n_set(tem_str, &f);
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_int_dot_n_set(tem_str, f);
 	if (f->blank && d > 0)
 		tem_str = ft_strjoin(" ", tem_str);
 	else if (f->plus && d > 0)
@@ -30,7 +29,7 @@ int		ft_handle_int(int d, t_flags *f)
 		if(f->zero)
 			tem_str = ft_int_zero_set(tem_str, width);
 		else
-			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	return (ft_strlen(tem_str));
@@ -41,12 +40,12 @@ char	*ft_int_dot_n_set(char *tem_str, t_flags *f)
 	int		i;
 	char	*zero_str;
 
-	i = f->dot_n - ft_strlen(tem_str);
+	i = f->dot_n - (int)ft_strlen(tem_str);
 	if (!(zero_str = malloc(sizeof(char) * (i + 1))))
-		return ;
+		return (NULL);
 	ft_memset(zero_str, 48, i);
 	if (tem_str[0] == '-')
-		tem_str = ft_minus_join(tem_str, zero_str);
+		tem_str = ft_join_signed(tem_str, zero_str, 1);
 	else
 		tem_str = ft_strjoin(zero_str, tem_str);
 	free(zero_str);
@@ -59,7 +58,7 @@ char	*ft_int_zero_set(char *str, int width)
 	char	*fin_str;
 
 	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
-		return ;
+		return (NULL);
 	empty_str = ft_memset(empty_str, 48, width);
 	if (str[0] > 48 && str[0] <= 57)
 		fin_str = ft_strjoin(empty_str, str);
@@ -75,7 +74,7 @@ char	*ft_int_width_set(char *str, t_flags *f, int width, int set)
 	char	*fin_str;
 
 	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
-		return ;
+		return (NULL);
 	ft_memset(empty_str, set, width);
 	if (f->left_sort)
 		fin_str = ft_strjoin(str, empty_str);
@@ -85,7 +84,7 @@ char	*ft_int_width_set(char *str, t_flags *f, int width, int set)
 	return (fin_str);
 }
 
-char	*ft_join_signed(char *str, char *zero, int	size)
+char	*ft_join_signed(char *str, char *zero, int size)
 {
 	char	*n_str;
 	int		i;

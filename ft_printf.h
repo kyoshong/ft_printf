@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/20 20:13:48 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:26:11 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,45 @@ typedef struct	s_flags
 	int	star;
 }				t_flags;
 
+int		ft_printf(const char *arg, ...);
+int		ft_make_format(va_list ap, int i, char *arg);
 
+t_flags	ft_set_flags(void);
 int		ft_format_spec_check(char f);
+int		ft_flag_check(char f);
+int		ft_format_spec(char c, va_list ap, int i, t_flags *flags);
+int		ft_flags(int i, const char *arg, t_flags *f, va_list ap);
+
 int		ft_width_set(int i, const char *arg, t_flags *flags);
 int		ft_set_precision(int i, const char *arg, t_flags *flags);
-int		ft_flag_check(char f);
-int		ft_flags(char i, const char *arg, t_flags f, va_list ap);
-int		ft_format_spec(char c, va_list ap, int i, t_flags *flags);
-int		ft_putnbr_unsigned(unsigned int n);
-int		ft_putnbr(int n);
-int		ft_print_putnbr(int n, int i);
-int		ft_make_format(va_list *ap, int i, const char *arg);
-void	ft_putbase_upper(unsigned int n);
-void	ft_print_base_lower(unsigned int n);
-void	ft_putbase_lower(unsigned int n);
-void	ft_count_n(int *n, int count);
-char	*ft_print_base_upper(unsigned int n, char *stack, int len);
-char	*ft_int_width_set(char *str, t_flags *f, int width, int set);
 
-t_flags	ft_flags_set(void);
+char	*ft_get_upper_str(unsigned int n);
+char	*ft_get_lower_str(unsigned int n);
+int		ft_count_base(unsigned int n, int i);
+int		ft_get_base_count(unsigned int n);
+
+int		ft_print_putnbr(int n , int i);
+int		ft_putnbr(int n);
+int		ft_putnbr_unsigned(unsigned int n);
+
+int		ft_handle_str(char *str, t_flags *f);
+int		ft_handle_char(char c, t_flags *f);
+
+int		ft_handle_bigx(unsigned int bigx, t_flags *f);
+int		ft_handle_smallx(unsigned int smallx, t_flags *f);
+int		ft_handle_u(unsigned int u, t_flags *f);
+char	*ft_set_unsigned_int_zero(char *str, int width);
+char	*ft_set_unsigned_int_dot_n(char *tem_str, t_flags *f);
+
+int		ft_handle_int(int d, t_flags *f);
+char	*ft_int_dot_n_set(char *tem_str, t_flags *f);
+char	*ft_int_zero_set(char *str, int width);
+char	*ft_int_width_set(char *str, t_flags *f, int width, int set);
+char	*ft_join_signed(char *str, char *zero, int	size);
+char	*ft_strdup_signed(const char *s, int size);
+
+int		ft_handle_p(unsigned long ptr, t_flags *f);
+void	ft_handle_ptr_int(int *ptr, int count);
+
 
 #endif

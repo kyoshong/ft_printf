@@ -17,8 +17,6 @@ size_t	ft_strlen(char const *str)
 	return (i);
 }
 
-
-
 int main()
 {
 	int	c = 2;
@@ -28,7 +26,7 @@ int main()
 	float f = 10.999;
 	unsigned u = 12345;
 
-	//int i = printf("%s\n", "");
-	int i	 = printf("%c", s);
+	 a = 10;
+	printf("\n%#p", b);
 	return 0;
 }

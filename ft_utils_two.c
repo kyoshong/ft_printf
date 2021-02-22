@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 22:22:17 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/18 21:10:36 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:27:58 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,4 @@ int		ft_set_precision(int i, const char *arg, t_flags *flags)
 	flags->dot_n = ft_atoi(tem);
 	free(tem);
 	return (i - 1);
-}
-
-void	ft_count_n(int *n, int count)
-{
-	*n = count;
 }

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/20 14:52:16 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:10:54 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_get_upper_str(unsigned int n)
 	i = 0;
 	len = ft_get_base_count(n);
 	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return ;
+		return (NULL);
 	base = "0123456789ABCDEF";
 	while (n > 16)
 	{
@@ -46,7 +46,7 @@ char	*ft_get_lower_str(unsigned int n)
 	i = 0;
 	len = ft_get_base_count(n);
 	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return ;
+		return (NULL);
 	base = "0123456789abcdef";
 	while (n > 16) 
 	{
