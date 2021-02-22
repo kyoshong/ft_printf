@@ -6,11 +6,12 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 14:22:17 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 20:55:44 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_make_format(va_list ap, int i, char *arg)
 {
@@ -56,4 +57,12 @@ int		ft_printf(const char *arg, ...)
 	count = ft_make_format(ap, 0, copy);
 	va_end(ap);
 	return (count);
+}
+
+int	main()
+{
+	int	b = 1;
+	int a = ft_printf("%d", b);
+	printf("\n%d", a);
+	return (0);
 }

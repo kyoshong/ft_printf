@@ -21,19 +21,18 @@ OBJ=$(SRC:.c=.o)
 LIBFT= ./libft/libft.a
 
 $(NAME): $(OBJ)
-	$(MAKE) bonus -C ./libft
+	make bonus -C ./libft
 	cp libft/libft.a $(NAME)
-	$(CC) $(CFLAGS) ft_printf.h $(SRC)
-	ar rc $(NAME) $(OBJ)
+	ar -rc $(NAME) $(OBJ)
 	
 all: $(NAME)
 
 clean:
 	$(MAKE) clean -C ./libft
-	$(RM) $(OBJ) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	$(MAKE) fclean -C ./libft	
+	$(MAKE) fclean -C ./libft
 	$(RM) $(NAME)
 
 re: fclean all

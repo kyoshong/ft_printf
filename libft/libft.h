@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:53:45 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 23:39:48 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/22 20:42:42 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
-size_t			ft_strlcpy(char *dest, char *src, size_t size);
+size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 char			*ft_strrev(const char *s);
 
 int				ft_lstsize(t_list *lst);

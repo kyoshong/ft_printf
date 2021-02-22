@@ -24,12 +24,13 @@ OBJS_BONUS=$(bonus:.c=.o)
 
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	ar r $(NAME) $(OBJ)
 
 all: $(NAME)
 
 bonus: $(OBJ) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJ) $(OBJS_BONUS)
+	$(CC) $(CFLAGS) libft.h $(SRC)
+	ar r $(NAME) $(OBJ) $(OBJS_BONUS)
 
 clean:
 	$(RM) $(OBJ) $(OBJS_BONUS)
