@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:45:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/01/19 20:38:58 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 00:15:20 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	cheak_size(long n)
+int		cheak_size(long n)
 {
 	int	count;
 

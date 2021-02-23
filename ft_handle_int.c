@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 15:18:46 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:11:32 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@ int		ft_handle_int(int d, t_flags f)
 {
 	char	*tem_str;
 	int		width;
-
+	int		len;
+	
 	tem_str = ft_itoa(d);
-	if (f.dot_n > (int)ft_strlen(tem_str))
-		tem_str = ft_int_dot_n_set(tem_str, &f);
+	if (d < 0)
+		len = f.dot_n - ((int)ft_strlen(tem_str) - 1);
+	else
+		len = f.dot_n - (int)ft_strlen(tem_str);
+	if (len > 0)
+		tem_str = ft_int_dot_n_set(tem_str, &f, len);
 	if (f.blank && d > 0)
 		tem_str = ft_strjoin(" ", tem_str);
 	else if (f.plus && d > 0)
@@ -32,16 +37,16 @@ int		ft_handle_int(int d, t_flags f)
 			tem_str = ft_int_width_set(tem_str, &f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
-	return (ft_strlen(tem_str));
+	width = ft_strlen(tem_str);
+	free(tem_str);
+	return (width);
 }
 
-char	*ft_int_dot_n_set(char *tem_str, t_flags *f)
+char	*ft_int_dot_n_set(char *tem_str, t_flags *f, int i)
 {
-	int		i;
 	char	*zero_str;
 
-	i = f->dot_n - (int)ft_strlen(tem_str);
-	if (!(zero_str = malloc(sizeof(char) * (i + 1))))
+	if (!(zero_str = malloc(sizeof(char) * i)))
 		return (NULL);
 	ft_memset(zero_str, 48, i);
 	if (tem_str[0] == '-')
@@ -57,9 +62,9 @@ char	*ft_int_zero_set(char *str, int width)
 	char	*empty_str;
 	char	*fin_str;
 
-	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
+	if (!(empty_str = malloc(sizeof(char) * width)))
 		return (NULL);
-	empty_str = ft_memset(empty_str, 48, width);
+	ft_memset(empty_str, 48, width);
 	if (str[0] > 48 && str[0] <= 57)
 		fin_str = ft_strjoin(empty_str, str);
 	else
@@ -73,7 +78,7 @@ char	*ft_int_width_set(char *str, t_flags *f, int width, int set)
 	char	*empty_str;
 	char	*fin_str;
 
-	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
+	if (!(empty_str = malloc(sizeof(char) * width)))
 		return (NULL);
 	ft_memset(empty_str, set, width);
 	if (f->left_sort)
@@ -88,41 +93,40 @@ char	*ft_join_signed(char *str, char *zero, int size)
 {
 	char	*n_str;
 	int		i;
-	char	*str1;
-	char	*str2;
+	int		j;
 	
 	if (!str && !zero)
 		return (NULL);
-	str1 = ft_strdup_signed(str, size);
-	str2 = zero;
-	if (!(n_str = (char *)malloc(ft_strlen(str1) + ft_strlen(str2) + 2)))
+	//str1 = ft_strdup_signed(str, size);
+	if (!(n_str = (char *)malloc(ft_strlen(str) + ft_strlen(zero))))
 		return (NULL);
-	i = size;
-	n_str[0] = str[0];
-	while (*str2 != '\0')
-		n_str[i++] = *str2++;
-	while (*str1 != '\0')
-		n_str[i++] = *str1++;
+	i = 0;
+	j = 0;
+	while (j < size)
+		n_str[i++] = str[j++];
+	while (*zero != '\0')
+		n_str[i++] = *zero++;
+	while (str[size] != '\0')
+		n_str[i++] = str[size++];
 	n_str[i] = '\0';
-	free(str1);
-	free(str2);
 	return (n_str);
 }
 
-char	*ft_strdup_signed(const char *s, int size)
-{
-	char	*tem;
-	int		i;
-	int		j;
-	int		len;
+// char	*ft_strdup_signed(char *s, int size)
+// {
+// 	char	*tem;
+// 	int		i;
+// 	int		j;
+// 	int		len;
 
-	len = ft_strlen(s) - 1;
-	if (!(tem = (char *)malloc((sizeof(char) * len) + 1)))
-		return (NULL);
-	i = size;
-	j = 0;
-	while (s[i] != '\0')
-		tem[j++] = s[i++];
-	tem[j] = '\0';
-	return (tem);
-}
+	
+// 	len = ft_strlen(s);
+// 	if (!(tem = (char *)malloc(sizeof(char) * (size + 1))))
+// 		return (NULL);
+// 	j = 0;
+// 	i = 0;
+// 	while (j < size && s[i])
+// 		tem[j++] = s[i++];
+// 	tem[j] = '\0';
+// 	return (tem);
+// }

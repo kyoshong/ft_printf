@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 17:46:20 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 00:13:43 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_make_format(va_list ap, int i, char *arg)
+int		ft_make_format(va_list *ap, int i, char *arg)
 {
 	t_flags	flags;
 	int		count;
@@ -31,8 +31,6 @@ int		ft_make_format(va_list ap, int i, char *arg)
 			}
 			if (ft_format_spec_check(arg[i]))
 				count += ft_format_spec(arg[i], ap, i, &flags);
-			else
-				return (-1);
 		}
 		else if(arg[i] != '%')
 		{
@@ -54,7 +52,7 @@ int		ft_printf(const char *arg, ...)
 		return (-1);
 	copy = ft_strdup(arg);
 	va_start(ap, arg);
-	count = ft_make_format(ap, 0, copy);
+	count = ft_make_format(&ap, 0, copy);
 	va_end(ap);
 	return (count);
 }

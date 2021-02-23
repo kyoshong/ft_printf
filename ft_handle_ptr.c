@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 15:16:00 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:18:54 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int		ft_handle_p(unsigned long ptr, t_flags f)
 			tem_str = ft_int_width_set(tem_str, &f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
-	return (ft_strlen(tem_str));
+	width = ft_strlen(tem_str);
+	free(tem_str);
+	return (width);
 }
 
 void	ft_handle_ptr_int(int *ptr, int count)
@@ -45,13 +47,17 @@ int		ft_handle_percent(t_flags f)
 	int		width;
 	
 	tem_str = "%";
-	if ((width = f.width) > 0)
+	if ((width = f.width - 1) > 0)
 	{
-		if (f.zero)
+		if (f.zero && f.left_sort == 0)
 			tem_str = ft_int_width_set(tem_str, &f, width, 48);
 		else
 			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+		ft_putstr_fd(tem_str, 1);
+		width = ft_strlen(tem_str);
+		free(tem_str);
+		return (width);
 	}
-	ft_putstr_fd(tem_str, 1);
-	return (ft_strlen(tem_str));
+	ft_putchar_fd('%', 1);
+	return (1);
 }

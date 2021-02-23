@@ -18,12 +18,17 @@ SRC=ft_convert_base.c \
 
 OBJ=$(SRC:.c=.o)
 
+.c.o:
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+
 LIBFT= ./libft/libft.a
 
 $(NAME): $(OBJ)
 	$(MAKE) bonus -C ./libft
-	cp libft/libft.a $(NAME)
+	cp libft/libft.a .
+	mv libft.a $(NAME)
 	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 	
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:15:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 15:19:18 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 22:34:29 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_handle_str(char *str, t_flags f)
 		return (ft_strlen(fin_str));
 	}
 	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	return ((int)ft_strlen(str));
 }
 
 int		ft_handle_char(char c, t_flags f)
@@ -48,7 +48,7 @@ int		ft_handle_char(char c, t_flags f)
 	char	*fin_str;
 	int		width;
 
-	if ((width = f.width - 1) > 0)
+	if ((width = f.width) > 1)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return (0);

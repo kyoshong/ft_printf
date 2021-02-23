@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 17:48:09 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 01:54:00 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,33 @@ int	ft_flag_check(char f)
 			f == '0' || f == '*' || f == '.'|| (f >= 48 && f <= 57));
 }
 
-int		ft_format_spec(char c, va_list ap, int i, t_flags *flags)
+int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 {
 	int		count;
 
 	count = 0;
 	if (c == 's')
-		count = ft_handle_str(va_arg(ap, char *), *flags);
+		count = ft_handle_str(va_arg(*ap, char *), *flags);
 	else if (c == 'c')
-		count = ft_handle_char(va_arg(ap, int), *flags);
+		count = ft_handle_char((char)va_arg(*ap, int), *flags);
 	else if (c == 'd' || c == 'i')
-		count = ft_handle_int(va_arg(ap, int), *flags);
+		count = ft_handle_int(va_arg(*ap, int), *flags);
 	else if (c == 'x')
-		count = ft_handle_smallx(va_arg(ap, unsigned int), *flags);
+		count = ft_handle_smallx(va_arg(*ap, unsigned int), *flags);
 	else if (c == 'X')
-		count = ft_handle_bigx(va_arg(ap, unsigned int), *flags);
+		count = ft_handle_bigx(va_arg(*ap, unsigned int), *flags);
 	else if (c == 'u')
-		count = ft_handle_u(va_arg(ap, unsigned int), *flags);
+		count = ft_handle_u(va_arg(*ap, unsigned int), *flags);
 	else if (c == 'n')
-		ft_handle_ptr_int(va_arg(ap, int *), (i - 1));
+		ft_handle_ptr_int(va_arg(*ap, int *), (i - 1));
 	else if (c == 'p')
-		count = ft_handle_p(va_arg(ap, unsigned long), *flags);
+		count = ft_handle_p(va_arg(*ap, unsigned long), *flags);
 	else if (c == '%')
 		count = ft_handle_percent(*flags);
 	return (count);
 }
 
-int	ft_flags(int i, const char *arg, t_flags *f, va_list ap)
+int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 {
 	if (arg[i] == '-')
 		f->left_sort = 1;
@@ -80,11 +80,19 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list ap)
 	{
 		if (f->width != 0)
 			return (i);
-		f->width = va_arg(ap, int);
+		f->width = va_arg(*ap, int);
 	}
 	else if (arg[i] >= 49 && arg[i] <= 57)
 		i = ft_width_set(i ,arg, f);
 	else if (arg[i] == '.')
-		i = ft_set_precision((i + 1), arg, f);
+	{
+		if (arg[i + 1] == '*')
+		{
+			f->dot_n = va_arg(*ap, int);
+			i++;
+		}
+		else
+			i = ft_set_precision((i + 1), arg, f);
+	}
 	return (i);
 }
