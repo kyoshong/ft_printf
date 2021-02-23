@@ -3,11 +3,9 @@
 
 int main()
 {
-	int b = 16;
-	//printf("%u\n",b);
-	//printf("%d", c);
-	//ft_printf("%u\n",b);
-	printf("%c", 32);
+	int b = 0;
+	//ft_printf("%0.d", b);
+	printf("%0.d", b);
 	
 	return 0;
 }
