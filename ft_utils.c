@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 14:24:27 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:48:09 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_flags	ft_set_flags(void)
 
 int	ft_format_spec_check(char f)
 {
-	return (f == 's' || f == 'c' || f == 'd' || f == 'i' || 
+	return (f == 's' || f == 'c' || f == 'd' || f == 'i' || f == 'p' ||
 			f == 'x' || f == 'X' || f == 'u' || f == 'n' || f == '%');
 }
 
@@ -44,26 +44,23 @@ int		ft_format_spec(char c, va_list ap, int i, t_flags *flags)
 
 	count = 0;
 	if (c == 's')
-		count = ft_handle_str(va_arg(ap, char *), flags);
+		count = ft_handle_str(va_arg(ap, char *), *flags);
 	else if (c == 'c')
-		count = ft_handle_char(va_arg(ap, int), flags);
+		count = ft_handle_char(va_arg(ap, int), *flags);
 	else if (c == 'd' || c == 'i')
-		count = ft_handle_int(va_arg(ap, int), flags);
+		count = ft_handle_int(va_arg(ap, int), *flags);
 	else if (c == 'x')
-		count = ft_handle_smallx(va_arg(ap, unsigned int), flags);
+		count = ft_handle_smallx(va_arg(ap, unsigned int), *flags);
 	else if (c == 'X')
-		count = ft_handle_bigx(va_arg(ap, unsigned int), flags);
+		count = ft_handle_bigx(va_arg(ap, unsigned int), *flags);
 	else if (c == 'u')
-		count = ft_handle_u(va_arg(ap, unsigned int), flags);
+		count = ft_handle_u(va_arg(ap, unsigned int), *flags);
 	else if (c == 'n')
 		ft_handle_ptr_int(va_arg(ap, int *), (i - 1));
 	else if (c == 'p')
-		count = ft_handle_p(va_arg(ap, unsigned long), flags);
+		count = ft_handle_p(va_arg(ap, unsigned long), *flags);
 	else if (c == '%')
-	{
-		write(1, "%", 1);
-		count = 1;
-	}
+		count = ft_handle_percent(*flags);
 	return (count);
 }
 
@@ -89,5 +86,5 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list ap)
 		i = ft_width_set(i ,arg, f);
 	else if (arg[i] == '.')
 		i = ft_set_precision((i + 1), arg, f);
-	return i;
+	return (i);
 }

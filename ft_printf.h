@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 14:26:11 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:12:48 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdio.h>
 
 typedef struct	s_flags
 {
@@ -52,23 +53,24 @@ int		ft_print_putnbr(int n , int i);
 int		ft_putnbr(int n);
 int		ft_putnbr_unsigned(unsigned int n);
 
-int		ft_handle_str(char *str, t_flags *f);
-int		ft_handle_char(char c, t_flags *f);
+int		ft_handle_str(char *str, t_flags f);
+int		ft_handle_char(char c, t_flags f);
+int		ft_handle_percent(t_flags f);
 
-int		ft_handle_bigx(unsigned int bigx, t_flags *f);
-int		ft_handle_smallx(unsigned int smallx, t_flags *f);
-int		ft_handle_u(unsigned int u, t_flags *f);
+int		ft_handle_bigx(unsigned int bigx, t_flags f);
+int		ft_handle_smallx(unsigned int smallx, t_flags f);
+int		ft_handle_u(unsigned int u, t_flags f);
 char	*ft_set_unsigned_int_zero(char *str, int width);
 char	*ft_set_unsigned_int_dot_n(char *tem_str, t_flags *f);
 
-int		ft_handle_int(int d, t_flags *f);
+int		ft_handle_int(int d, t_flags f);
 char	*ft_int_dot_n_set(char *tem_str, t_flags *f);
 char	*ft_int_zero_set(char *str, int width);
 char	*ft_int_width_set(char *str, t_flags *f, int width, int set);
 char	*ft_join_signed(char *str, char *zero, int	size);
 char	*ft_strdup_signed(const char *s, int size);
 
-int		ft_handle_p(unsigned long ptr, t_flags *f);
+int		ft_handle_p(unsigned long ptr, t_flags f);
 void	ft_handle_ptr_int(int *ptr, int count);
 
 

@@ -5,6 +5,8 @@
 		"algorithm": "c",
 		"cstdarg": "c",
 		"stdarg.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"sstream": "c",
+		"libft.h": "c"
 	}
 }

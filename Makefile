@@ -2,7 +2,7 @@ NAME=libftprintf.a
 
 CC=gcc
 
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-c -Wall -Wextra -Werror
 
 RM=rm -f
 
@@ -21,9 +21,9 @@ OBJ=$(SRC:.c=.o)
 LIBFT= ./libft/libft.a
 
 $(NAME): $(OBJ)
-	make bonus -C ./libft
+	$(MAKE) bonus -C ./libft
 	cp libft/libft.a $(NAME)
-	ar -rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	
 all: $(NAME)
 

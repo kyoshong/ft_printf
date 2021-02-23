@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 18:40:55 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/19 23:46:48 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:56:32 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 size_t	ft_strlen(char const *str)
 {
-	size_t	i;
+	int i;
 
 	i = 0;
-	while (str[i])
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }

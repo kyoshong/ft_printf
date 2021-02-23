@@ -6,30 +6,30 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 14:40:32 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:18:46 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_handle_int(int d, t_flags *f)
+int		ft_handle_int(int d, t_flags f)
 {
 	char	*tem_str;
 	int		width;
 
 	tem_str = ft_itoa(d);
-	if (f->dot_n > (int)ft_strlen(tem_str))
-		tem_str = ft_int_dot_n_set(tem_str, f);
-	if (f->blank && d > 0)
+	if (f.dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_int_dot_n_set(tem_str, &f);
+	if (f.blank && d > 0)
 		tem_str = ft_strjoin(" ", tem_str);
-	else if (f->plus && d > 0)
+	else if (f.plus && d > 0)
 		tem_str = ft_strjoin("+", tem_str);
-	if ((width = f->width - ft_strlen(tem_str)) > 0)
+	if ((width = f.width - ft_strlen(tem_str)) > 0)
 	{
-		if(f->zero)
+		if(f.zero)
 			tem_str = ft_int_zero_set(tem_str, width);
 		else
-			tem_str = ft_int_width_set(tem_str, f, width, 32);
+			tem_str = ft_int_width_set(tem_str, &f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	return (ft_strlen(tem_str));

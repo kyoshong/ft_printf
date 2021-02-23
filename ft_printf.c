@@ -6,14 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 20:55:44 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:46:20 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
-#include <stdio.h>
 
-int	ft_make_format(va_list ap, int i, char *arg)
+int		ft_make_format(va_list ap, int i, char *arg)
 {
 	t_flags	flags;
 	int		count;
@@ -24,7 +23,8 @@ int	ft_make_format(va_list ap, int i, char *arg)
 		flags = ft_set_flags();
 		if (arg[i] == '%' && arg[i + 1])
 		{
-			while (!ft_format_spec_check(arg[i]) && ft_flag_check(arg[i]))
+			i++;
+			while (ft_flag_check(arg[i]))
 			{
 				i = ft_flags(i, arg, &flags, ap);
 				i++;
@@ -46,9 +46,9 @@ int	ft_make_format(va_list ap, int i, char *arg)
 
 int		ft_printf(const char *arg, ...)
 {
-	va_list		ap;
+	va_list	ap;
 	char	*copy;
-	int			count;
+	int		count;
 
 	if (!arg)
 		return (-1);
@@ -57,12 +57,4 @@ int		ft_printf(const char *arg, ...)
 	count = ft_make_format(ap, 0, copy);
 	va_end(ap);
 	return (count);
-}
-
-int	main()
-{
-	int	b = 1;
-	int a = ft_printf("%d", b);
-	printf("\n%d", a);
-	return (0);
 }
