@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 01:54:00 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:57:44 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_format_spec_check(char f)
 int	ft_flag_check(char f)
 {
 	return (f == '-' || f == ' ' || f == '+' || f == '#' || 
-			f == '0' || f == '*' || f == '.'|| (f >= 48 && f <= 57));
+			f == '*' || f == '.'|| (f >= 48 && f <= 57));
 }
 
 int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)

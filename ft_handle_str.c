@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:15:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/23 22:34:29 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:52:39 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,27 @@ int		ft_handle_str(char *str, t_flags f)
 int		ft_handle_char(char c, t_flags f)
 {
 	char	*empty_str;
-	char	*fin_str;
 	int		width;
 
-	if ((width = f.width) > 1)
+	if ((width = f.width - 1) > 1)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return (0);
 		ft_memset(empty_str, 32, width);
 		if (f.left_sort)
-			fin_str = ft_strjoin(&c, empty_str);
+		{
+			ft_putchar_fd(c, 1);
+			ft_putstr_fd(empty_str, 1);
+		}
 		else
-			fin_str = ft_strjoin(empty_str, &c);
+		{
+			ft_putstr_fd(empty_str, 1);
+			ft_putchar_fd(c, 1);
+
+		}
+		width = ft_strlen(empty_str);
 		free(empty_str);
-		ft_putstr_fd(fin_str, 1);
-		return (ft_strlen(fin_str));
+		return (width + 1);
 	}
 	ft_putchar_fd(c, 1);
 	return (1);

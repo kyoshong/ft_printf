@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 00:13:43 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:31:00 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		ft_make_format(va_list *ap, int i, char *arg)
 		}
 		i++;
 	}
+	va_end(*ap);
 	return (count);
 }
 
