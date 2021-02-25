@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 17:50:01 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:48:44 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 		f->zero = 1;
 	else if (arg[i] == '*')
 	{
-		if (f->width != 0)
-			return (i);
-		f->width = va_arg(*ap, int);
+		if ((f->width = va_arg(*ap, int)) < 0)
+		{
+			f->width *= -1;
+			f->left_sort = 1;
+		}
 	}
 	else if (arg[i] >= 49 && arg[i] <= 57)
 		i = ft_width_set(i ,arg, f);
-	else if (arg[i] == '.')
+	else if (arg[i] == '.' && arg[i + 1])
 		i = ft_set_precision((i + 1), arg, f, ap);
 	return (i);
 }

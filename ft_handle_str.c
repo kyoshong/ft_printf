@@ -19,18 +19,16 @@ int		ft_handle_str(char *str, t_flags *f)
 	int		width;
 
 	if (!str)
-		return (0);
+		fin_str = "(null)";
+	else
+		fin_str = ft_strdup(str);
+	if (f->dot_n < (ft_strlen(fin_str) + 1) && f->dot_n > 0)
+	 	fin_str[f->dot_n] = '\0';
 	if (f->dot_n == 0)
+		fin_str = "";
+	if ((width = f->width - ft_strlen(fin_str)) > 0)
 	{
-		ft_putstr_fd("", 1);
-		return (1);
-	}
-	fin_str = ft_strdup(str);
-	if (f->dot_n > 0)
-		fin_str[f->dot_n] = '\0';
-	if ((width = f->width - ft_strlen(str)) > 0)
-	{
-		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
+		if (!(empty_str = malloc(sizeof(char) * width)))
 			return (0);
 		ft_memset(empty_str, 32, width);
 		if (f->left_sort)
@@ -38,15 +36,9 @@ int		ft_handle_str(char *str, t_flags *f)
 		else
 			fin_str = ft_strjoin(empty_str, fin_str);
 		free(empty_str);
-		ft_putstr_fd(fin_str, 1);
-		width = ft_strlen(fin_str);
-		free(fin_str);
-		return (width);
 	}
 	ft_putstr_fd(fin_str, 1);
-	width = ft_strlen(fin_str);
-	free(fin_str);
-	return (width);
+	return (ft_strlen(fin_str));
 }
 
 int		ft_handle_char(char c, t_flags *f)
@@ -55,7 +47,7 @@ int		ft_handle_char(char c, t_flags *f)
 	int		width;
 
 	if (!c)
-		return (0);
+		return (1);
 	if ((width = f->width - 1) > 1)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))

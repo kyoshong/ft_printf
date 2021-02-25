@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 14:10:54 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:33:33 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		ft_count_base(unsigned int n, int i)
 int		ft_get_base_count(unsigned int n)
 {
 	int	i;
+	
 	i = 0;
 	i = ft_count_base(n, i);
 	return (i);

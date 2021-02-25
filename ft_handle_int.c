@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 18:00:33 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 22:18:25 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,33 @@ int		ft_handle_int(int d, t_flags *f)
 	char	*tem_str;
 	int		width;
 	int		len;
+
 	
-	// if (f.dot_n == -2)
-	// 	f.dot_n = d;
-	// if (f.dot_n == 0 && d == 0)
-	// 	tem_str = "";
-	// else
-	tem_str = ft_itoa(d);
-	if (d < 0)
-		len = f->dot_n - ((int)ft_strlen(tem_str) - 1);
+	if (f->dot_n == 0 && d == 0)
+		tem_str = "";
 	else
-		len = f->dot_n - (int)ft_strlen(tem_str);
-	if (len > 0)
-		tem_str = ft_int_dot_n_set(tem_str, f, len);
+	{
+		tem_str = ft_itoa(d);
+		if (d < 0)
+			len = f->dot_n - ((int)ft_strlen(tem_str) - 1);
+		else
+			len = f->dot_n - (int)ft_strlen(tem_str);
+		if (len > 0)
+			tem_str = ft_int_dot_n_set(tem_str, f, len);
+	}
 	if (f->blank && d > 0)
 		tem_str = ft_strjoin(" ", tem_str);
 	else if (f->plus && d > 0)
 		tem_str = ft_strjoin("+", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f->zero)
+		if(f->dot_n < 0 && f->zero && f->left_sort == 0)
 			tem_str = ft_int_zero_set(tem_str, width);
 		else
 			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
-	width = ft_strlen(tem_str);
-	free(tem_str);
-	return (width);
+	return (ft_strlen(tem_str));
 }
 
 char	*ft_int_dot_n_set(char *tem_str, t_flags *f, int i)
@@ -102,7 +101,6 @@ char	*ft_join_signed(char *str, char *zero, int size)
 	
 	if (!str && !zero)
 		return (NULL);
-	//str1 = ft_strdup_signed(str, size);
 	if (!(n_str = (char *)malloc(ft_strlen(str) + ft_strlen(zero))))
 		return (NULL);
 	i = 0;
@@ -116,22 +114,3 @@ char	*ft_join_signed(char *str, char *zero, int size)
 	n_str[i] = '\0';
 	return (n_str);
 }
-
-// char	*ft_strdup_signed(char *s, int size)
-// {
-// 	char	*tem;
-// 	int		i;
-// 	int		j;
-// 	int		len;
-
-	
-// 	len = ft_strlen(s);
-// 	if (!(tem = (char *)malloc(sizeof(char) * (size + 1))))
-// 		return (NULL);
-// 	j = 0;
-// 	i = 0;
-// 	while (j < size && s[i])
-// 		tem[j++] = s[i++];
-// 	tem[j] = '\0';
-// 	return (tem);
-// }

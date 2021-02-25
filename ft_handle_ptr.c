@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 17:50:38 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 22:27:06 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ int		ft_handle_p(unsigned long ptr, t_flags *f)
 	char	*tem_str;
 	int		width;
 	
-	if (!ptr)
-		return (0);
 	tem_str = ft_get_lower_str(ptr);
 	if (f->dot_n > (int)ft_strlen(tem_str))
 		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
 	tem_str = ft_strjoin("0x", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if (f->zero)
+		if (f->zero && f->left_sort == 0)
 			tem_str = ft_int_width_set(tem_str, f, width, 48);
 		else
 			tem_str = ft_int_width_set(tem_str, f, width, 32);

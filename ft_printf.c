@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 14:31:00 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 23:43:24 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,20 @@ int		ft_make_format(va_list *ap, int i, char *arg)
 		flags = ft_set_flags();
 		if (arg[i] == '%' && arg[i + 1])
 		{
-			i++;
-			while (ft_flag_check(arg[i]))
+			while (ft_flag_check(arg[++i]))
 			{
 				i = ft_flags(i, arg, &flags, ap);
-				i++;
 			}
 			if (ft_format_spec_check(arg[i]))
 				count += ft_format_spec(arg[i], ap, i, &flags);
 		}
-		else if(arg[i] != '%')
+		else if (arg[i] != '%')
 		{
 			write(1, &arg[i], 1);
 			count++;
 		}
 		i++;
 	}
-	va_end(*ap);
 	return (count);
 }
 
