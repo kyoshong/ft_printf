@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 22:18:25 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 01:36:17 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int		ft_handle_int(int d, t_flags *f)
 		if (len > 0)
 			tem_str = ft_int_dot_n_set(tem_str, f, len);
 	}
-	if (f->blank && d > 0)
+	if (f->blank && d >= 0)
 		tem_str = ft_strjoin(" ", tem_str);
-	else if (f->plus && d > 0)
+	else if (f->plus && d >= 0)
 		tem_str = ft_strjoin("+", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{

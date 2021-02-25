@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 21:33:33 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 02:03:25 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_get_lower_str(unsigned int n)
 		n /= 16;
 		i++;
 	}
-	str[i++] =  base[n];
+	str[i++] = base[n];
 	str[i] = '\0';
 	str = ft_strrev(str);
 	return (str);

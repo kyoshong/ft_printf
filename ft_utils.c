@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 20:48:44 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 02:52:22 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 		count = ft_handle_bigx(va_arg(*ap, unsigned int), flags);
 	else if (c == 'u')
 		count = ft_handle_u(va_arg(*ap, unsigned int), flags);
-	else if (c == 'n')
-		ft_handle_ptr_int(va_arg(*ap, int *), (i - 1));
 	else if (c == 'p')
 		count = ft_handle_p(va_arg(*ap, unsigned long), flags);
 	else if (c == '%')
@@ -69,9 +67,15 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 	if (arg[i] == '-')
 		f->left_sort = 1;
 	else if (arg[i] == ' ')
+	{
 		f->blank = 1;
+		f->plus = 0;
+	}
 	else if (arg[i] == '+')
+	{
 		f->plus = 1;
+		f->blank = 0;
+	}
 	else if (arg[i] == '#')
 		f->hash = 1;
 	else if (arg[i] == '0')

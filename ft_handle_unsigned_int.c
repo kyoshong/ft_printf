@@ -24,14 +24,14 @@ int		ft_handle_bigx(unsigned int bigx, t_flags *f)
 		tem_str = ft_get_upper_str(bigx);
 		if (f->dot_n > (int)ft_strlen(tem_str))
 			tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
-		if (f->hash)
+		if (f->hash && bigx > 0)
 			tem_str = ft_strjoin("0X", tem_str);
 	}
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)
+		if(f->dot_n < 0 && f->zero && f->hash && !f->left_sort)
 			tem_str = ft_set_unsigned_int_zero(tem_str, width);
-		else if (f->dot_n < 0 && f->zero && f->left_sort == 0)
+		else if (f->dot_n < 0 && f->zero && !f->left_sort)
 			tem_str = ft_int_width_set(tem_str, f, width, 48);
 		else
 			tem_str = ft_int_width_set(tem_str, f, width, 32);
@@ -52,7 +52,7 @@ int		ft_handle_smallx(unsigned int smallx, t_flags *f)
 		tem_str = ft_get_lower_str(smallx);
 		if (f->dot_n > (int)ft_strlen(tem_str))
 			tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
-		if (f->hash)
+		if (f->hash && smallx > 0)
 			tem_str = ft_strjoin("0x", tem_str);
 	}
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
@@ -97,10 +97,13 @@ char	*ft_set_unsigned_int_zero(char *str, int width)
 	char	*empty_str;
 	char	*fin_str;
 
-	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
+	if (!(empty_str = malloc(sizeof(char) * width)))
 		return (NULL);
 	ft_memset(empty_str, 48, width);
-	fin_str = ft_join_signed(str, empty_str, 2);
+	if (ft_strlen(str) < 2)
+		fin_str = ft_join_signed(str, empty_str, 0);
+	else
+		fin_str = ft_join_signed(str, empty_str, 2);
 	free(empty_str);
 	return (fin_str);
 }
@@ -113,7 +116,7 @@ char	*ft_set_unsigned_int_dot_n(char *tem_str, t_flags *f)
 
 	i = f->dot_n - ft_strlen(tem_str);
 	if (!(zero_str = malloc(sizeof(char) * i)))
-		return (NULL);
+		return (0);
 	ft_memset(zero_str, 48, i);
 	tem_str = ft_strjoin(zero_str, tem_str);
 	free(zero_str);

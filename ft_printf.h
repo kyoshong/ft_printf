@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 17:49:38 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 03:04:15 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_putnbr_unsigned(unsigned int n);
 int		ft_handle_str(char *str, t_flags *f);
 int		ft_handle_char(char c, t_flags *f);
 int		ft_handle_percent(t_flags *f);
-
+char	*ft_str_zero_set(char *str, int width);
 int		ft_handle_bigx(unsigned int bigx, t_flags *f);
 int		ft_handle_smallx(unsigned int smallx, t_flags *f);
 int		ft_handle_u(unsigned int u, t_flags *f);
