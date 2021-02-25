@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 22:22:17 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 14:58:37 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:44:22 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,23 @@ int		ft_width_set(int i, const char *arg, t_flags *flags)
 	return (i - 1);
 }
 
-int		ft_set_precision(int i, const char *arg, t_flags *flags)
+int		ft_set_precision(int i, const char *arg, t_flags *flags,  va_list *ap)
 {
 	char	*tem;
 	int		j;
 	int		backup;
 
 	backup = i;
-	// if (arg[i] == 'i' || arg[i] == 'd')
+	// if (arg[i] == 'i' || arg[i] == 'd' || arg[i] == 's')
 	// {
 	// 	flags->dot_n = -2;
-	// 	return (i);
+	// 	return (i - 1);
 	// }
+	if (arg[i] == '*')
+	{
+		flags->dot_n = va_arg(*ap, int);
+		return (i);
+	}
 	while (arg[i] >= 48 && 57 >= arg[i])
 		i++;
 	if (!(tem = (char *)malloc((sizeof(char) * i) + 1)))

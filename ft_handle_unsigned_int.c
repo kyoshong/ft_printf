@@ -1,92 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_unsigned_int.c                           :+:      :+:    :+:   */
+/*   ft_handle_unsigned_int->c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 13:20:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 00:33:56 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:48:08 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_handle_bigx(unsigned int bigx, t_flags f)
+int		ft_handle_bigx(unsigned int bigx, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
 	
-	if (bigx == 0 && f.dot_n == 0)
+	if (bigx == 0 && f->dot_n == 0)
 	{
 		ft_putstr_fd("", 1);
 		return (1);
 	}
 	tem_str = ft_get_upper_str(bigx);
-	if (f.dot_n > (int)ft_strlen(tem_str))
-		tem_str = ft_set_unsigned_int_dot_n(tem_str, &f);
-	if (f.hash)
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
+	if (f->hash)
 		tem_str = ft_strjoin("0X", tem_str);
-	if ((width = f.width - ft_strlen(tem_str)) > 0)
+	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f.zero && f.hash)
+		if(f->zero && f->hash)
 			tem_str = ft_set_unsigned_int_zero(tem_str, width);
-		else if (f.zero)
-			tem_str = ft_int_width_set(tem_str, &f, width, 48);
+		else if (f->zero)
+			tem_str = ft_int_width_set(tem_str, f, width, 48);
 		else
-			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	return ((int)ft_strlen(tem_str));
 }
 
-int		ft_handle_smallx(unsigned int smallx, t_flags f)
+int		ft_handle_smallx(unsigned int smallx, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
 	
-	if (smallx == 0 && f.dot_n == 0)
+	if (smallx == 0 && f->dot_n == 0)
 	{
 		ft_putstr_fd("", 1);
 		return (1);
 	}
 	tem_str = ft_get_lower_str(smallx);
-	if (f.dot_n > (int)ft_strlen(tem_str))
-		tem_str = ft_set_unsigned_int_dot_n(tem_str, &f);
-	if (f.hash)
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
+	if (f->hash)
 		tem_str = ft_strjoin("0x", tem_str);
-	if ((width = f.width - ft_strlen(tem_str)) > 0)
+	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f.zero && f.hash)
+		if(f->zero && f->hash)
 			tem_str = ft_set_unsigned_int_zero(tem_str, width);
-		else if (f.zero)
-			tem_str = ft_int_width_set(tem_str, &f, width, 48);
+		else if (f->zero)
+			tem_str = ft_int_width_set(tem_str, f, width, 48);
 		else
-			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	return ((int)ft_strlen(tem_str));
 }
 
-int		ft_handle_u(unsigned int u, t_flags f)
+int		ft_handle_u(unsigned int u, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
 	
-	if (u == 0 && f.dot_n == 0)
+	if (u == 0 && f->dot_n == 0)
 	{
 		ft_putstr_fd("", 1);
 		return (1);
 	}
 	tem_str = ft_uitoa(u);
-	if (f.dot_n > (int)ft_strlen(tem_str))
-		tem_str = ft_set_unsigned_int_dot_n(tem_str, &f);
-	if ((width = f.width - ft_strlen(tem_str)) > 0)
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
+	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if (f.zero)
-			tem_str = ft_int_width_set(tem_str, &f, width, 48);
+		if (f->zero)
+			tem_str = ft_int_width_set(tem_str, f, width, 48);
 		else
-			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	width = (int)ft_strlen(tem_str);

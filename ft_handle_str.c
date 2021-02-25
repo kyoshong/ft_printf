@@ -1,58 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_str.c                                    :+:      :+:    :+:   */
+/*   ft_handle_str->c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:15:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 02:52:39 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:35:10 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_handle_str(char *str, t_flags f)
+int		ft_handle_str(char *str, t_flags *f)
 {
 	char	*empty_str;
 	char	*fin_str;
 	int		width;
 
-	if (f.dot_n == 0)
+	if (!str)
+		return (0);
+	if (f->dot_n == 0)
 	{
 		ft_putstr_fd("", 1);
 		return (1);
 	}
-	if (f.dot_n > 0)
-		str[f.dot_n] = '\0';
-	if ((width = f.width - ft_strlen(str)) > 0)
+	fin_str = ft_strdup(str);
+	if (f->dot_n > 0)
+		fin_str[f->dot_n] = '\0';
+	if ((width = f->width - ft_strlen(str)) > 0)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return (0);
 		ft_memset(empty_str, 32, width);
-		if (f.left_sort)
-			fin_str = ft_strjoin(str, empty_str);
+		if (f->left_sort)
+			fin_str = ft_strjoin(fin_str, empty_str);
 		else
-			fin_str = ft_strjoin(empty_str, str);
+			fin_str = ft_strjoin(empty_str, fin_str);
 		free(empty_str);
 		ft_putstr_fd(fin_str, 1);
-		return (ft_strlen(fin_str));
+		width = ft_strlen(fin_str);
+		free(fin_str);
+		return (width);
 	}
-	ft_putstr_fd(str, 1);
-	return ((int)ft_strlen(str));
+	ft_putstr_fd(fin_str, 1);
+	width = ft_strlen(fin_str);
+	free(fin_str);
+	return (width);
 }
 
-int		ft_handle_char(char c, t_flags f)
+int		ft_handle_char(char c, t_flags *f)
 {
 	char	*empty_str;
 	int		width;
 
-	if ((width = f.width - 1) > 1)
+	if (!c)
+		return (0);
+	if ((width = f->width - 1) > 1)
 	{
 		if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 			return (0);
 		ft_memset(empty_str, 32, width);
-		if (f.left_sort)
+		if (f->left_sort)
 		{
 			ft_putchar_fd(c, 1);
 			ft_putstr_fd(empty_str, 1);

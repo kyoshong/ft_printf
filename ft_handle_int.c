@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/24 13:50:34 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:00:33 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_handle_int(int d, t_flags f)
+int		ft_handle_int(int d, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
@@ -23,23 +23,23 @@ int		ft_handle_int(int d, t_flags f)
 	// if (f.dot_n == 0 && d == 0)
 	// 	tem_str = "";
 	// else
-		tem_str = ft_itoa(d);
+	tem_str = ft_itoa(d);
 	if (d < 0)
-		len = f.dot_n - ((int)ft_strlen(tem_str) - 1);
+		len = f->dot_n - ((int)ft_strlen(tem_str) - 1);
 	else
-		len = f.dot_n - (int)ft_strlen(tem_str);
+		len = f->dot_n - (int)ft_strlen(tem_str);
 	if (len > 0)
-		tem_str = ft_int_dot_n_set(tem_str, &f, len);
-	if (f.blank && d > 0)
+		tem_str = ft_int_dot_n_set(tem_str, f, len);
+	if (f->blank && d > 0)
 		tem_str = ft_strjoin(" ", tem_str);
-	else if (f.plus && d > 0)
+	else if (f->plus && d > 0)
 		tem_str = ft_strjoin("+", tem_str);
-	if ((width = f.width - ft_strlen(tem_str)) > 0)
+	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f.zero)
+		if(f->zero)
 			tem_str = ft_int_zero_set(tem_str, width);
 		else
-			tem_str = ft_int_width_set(tem_str, &f, width, 32);
+			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
 	width = ft_strlen(tem_str);
