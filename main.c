@@ -15,12 +15,16 @@ int main()
 	int aaa = 1010101;
 	int *ptr = &aaa;
 	char  *s = "123";
+	//int a = 0;
 	//int *bbb = &aa;
 
-
+	//char *a = ft_strjoin("vv","");
+	//printf("%s",a);
 	//printf("%.0p\n", "aaa");
 	// ft_printf("%.0p\n", "aaa");
-	ft_printf("-->|%-16.*s|<--\n", 0, s);
+	printf("%p\n", s);
+	ft_printf("%p\n", s);
+
 	*ptr = 1;
 	//printf("%#o\n", aaa);
 	aaa = 10;

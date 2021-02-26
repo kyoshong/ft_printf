@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 02:03:25 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:14:14 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	*ft_get_upper_str(unsigned int n)
 
 	i = 0;
 	len = ft_get_base_count(n);
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+	if (!(str = malloc(sizeof(char) * (len + 2))))
 		return (NULL);
 	base = "0123456789ABCDEF";
-	while (n > 16)
+	while (n >= 16)
 	{
 		str[i] =  base[n % 16];
 		n /= 16;
@@ -45,10 +45,10 @@ char	*ft_get_lower_str(unsigned int n)
 
 	i = 0;
 	len = ft_get_base_count(n);
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+	if (!(str = malloc(sizeof(char) * (len + 2))))
 		return (NULL);
 	base = "0123456789abcdef";
-	while (n > 16) 
+	while (n >= 16)
 	{
 		str[i] =  base[n % 16];
 		n /= 16;
@@ -60,7 +60,7 @@ char	*ft_get_lower_str(unsigned int n)
 	return (str);
 }
 
-int		ft_count_base(unsigned int n, int i)
+int		ft_count_base(unsigned long n, int i)
 {
 	if (n > 16)
 		i = ft_count_base(n / 16, i);
@@ -68,10 +68,10 @@ int		ft_count_base(unsigned int n, int i)
 	return (i);
 }
 
-int		ft_get_base_count(unsigned int n)
+int		ft_get_base_count(unsigned long n)
 {
 	int	i;
-	
+
 	i = 0;
 	i = ft_count_base(n, i);
 	return (i);

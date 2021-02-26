@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 17:22:49 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 20:54:00 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 	else if (c == 'u')
 		count = ft_handle_u(va_arg(*ap, unsigned int), flags);
 	else if (c == 'p')
-		count = ft_handle_p(va_arg(*ap, unsigned long), flags);
+		count = ft_handle_p(va_arg(*ap, char *), flags);
 	else if (c == '%')
 		count = ft_handle_percent(flags);
 	return (count);

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 18:10:09 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:03:59 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		ft_set_precision(int i, const char *arg, t_flags *flags, va_list *ap);
 
 char	*ft_get_upper_str(unsigned int n);
 char	*ft_get_lower_str(unsigned int n);
-int		ft_count_base(unsigned int n, int i);
-int		ft_get_base_count(unsigned int n);
+int		ft_count_base(unsigned long n, int i);
+int		ft_get_base_count(unsigned long n);
 
 int		ft_print_putnbr(int n , int i);
 int		ft_putnbr(int n);
@@ -70,7 +70,7 @@ char	*ft_int_width_set(char *str, t_flags *f, int width, int set);
 char	*ft_join_signed(char *str, char *zero, int	size);
 char	*ft_strdup_signed(char *s, int size);
 char	*ft_uitoa(unsigned int n);
-int		ft_handle_p(unsigned long ptr, t_flags *f);
+int		ft_handle_p(char *ptr, t_flags *f);
 void	ft_handle_ptr_int(int *ptr, int count);
 
 int		ft_handle_o(unsigned int oct, t_flags *f);
@@ -78,6 +78,6 @@ char	*ft_get_oc_str(unsigned int n);
 int		ft_count_base_oc(unsigned int n, int i);
 int		ft_get_base_count_oc(unsigned int n);
 char	*ft_set_unsigned_o_zero(char *str, int width);
-char	*ft_get_ptr_str(unsigned int n);
+char	*ft_get_ptr_str(unsigned long n);
 
 #endif

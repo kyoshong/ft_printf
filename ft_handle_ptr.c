@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 16:13:01 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:14:27 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int		ft_handle_p(unsigned long ptr, t_flags *f)
+int		ft_handle_p(char *ptr, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
@@ -20,7 +20,7 @@ int		ft_handle_p(unsigned long ptr, t_flags *f)
 	if (!ptr && f->dot_n == 0)
 		tem_str = ft_strdup("");
 	else
-		tem_str = ft_get_ptr_str(ptr);
+		tem_str = ft_get_ptr_str((unsigned long)ptr);
 	if (f->dot_n > (int)ft_strlen(tem_str))
 		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
 	tem_str = ft_strjoin("0x", tem_str);
@@ -32,12 +32,10 @@ int		ft_handle_p(unsigned long ptr, t_flags *f)
 			tem_str = ft_int_width_set(tem_str, f, width, 32);
 	}
 	ft_putstr_fd(tem_str, 1);
-	width = ft_strlen(tem_str);
-	free(tem_str);
-	return (width);
+	return (ft_strlen(tem_str));
 }
 
-char	*ft_get_ptr_str(unsigned int n)
+char	*ft_get_ptr_str(unsigned long n)
 {
 	char	*str;
 	char	*base;
@@ -46,10 +44,11 @@ char	*ft_get_ptr_str(unsigned int n)
 
 	i = 0;
 	len = ft_get_base_count(n);
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+
+	if (!(str = malloc(sizeof(char) * (len + 2))))
 		return (NULL);
 	base = "0123456789abcdef";
-	while (n > 16)
+	while (n >= 16)
 	{
 		str[i] =  base[n % 16];
 		n /= 16;
@@ -58,9 +57,9 @@ char	*ft_get_ptr_str(unsigned int n)
 	str[i++] = base[n];
 	str[i] = '\0';
 	str = ft_strrev(str);
-	//str = ft_strjoin("10", str);
 	return (str);
 }
+
 
 void	ft_handle_ptr_int(int *ptr, int count)
 {

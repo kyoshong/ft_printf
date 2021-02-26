@@ -19,19 +19,16 @@ int		ft_handle_str(char *str, t_flags *f)
 	int		width;
 
 	if (f->dot_n == 0)
-		fin_str = 0;
-	else
-	{
-		if (!str)
+		fin_str = ft_strdup("");
+	else if (!str)
 		fin_str = ft_strdup("(null)");
-		else
-			fin_str = ft_strdup(str);
-		if (f->dot_n > 0)
-			fin_str[f->dot_n] = '\0';
-	}
-	if ((width = f->width - (int)ft_strlen(fin_str)) > 0)
+	else
+		fin_str = ft_strdup(str);
+	if (f->dot_n > 0)
+		fin_str[f->dot_n] = '\0';
+	if ((width = f->width - ft_strlen(fin_str)) > 0)
 	{
-		if(f->dot_n < 0 && f->zero && f->left_sort == 0)
+		if(f->dot_n < 0 && f->zero && !f->left_sort)
 			fin_str = ft_str_zero_set(fin_str, width);
 		else
 			fin_str = ft_int_width_set(fin_str, f, width, 32);
@@ -79,5 +76,6 @@ char	*ft_str_zero_set(char *str, int width)
 	ft_memset(empty_str, 48, width);
 	fin_str = ft_strjoin(empty_str, str);
 	free(empty_str);
+	free(str);
 	return (fin_str);
 }

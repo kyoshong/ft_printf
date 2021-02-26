@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 01:36:17 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 20:24:17 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		ft_handle_int(int d, t_flags *f)
 	int		width;
 	int		len;
 
-	
+
 	if (f->dot_n == 0 && d == 0)
-		tem_str = "";
+		tem_str = ft_strdup("");
 	else
 	{
 		tem_str = ft_itoa(d);
@@ -82,7 +82,7 @@ char	*ft_int_width_set(char *str, t_flags *f, int width, int set)
 	char	*empty_str;
 	char	*fin_str;
 
-	if (!(empty_str = malloc(sizeof(char) * width)))
+	if (!(empty_str = malloc(sizeof(char) * (width + 1))))
 		return (NULL);
 	ft_memset(empty_str, set, width);
 	if (f->left_sort)
@@ -98,7 +98,7 @@ char	*ft_join_signed(char *str, char *zero, int size)
 	char	*n_str;
 	int		i;
 	int		j;
-	
+
 	if (!str && !zero)
 		return (NULL);
 	if (!(n_str = (char *)malloc(ft_strlen(str) + ft_strlen(zero))))
