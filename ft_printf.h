@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 03:04:15 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:41:39 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,11 @@ char	*ft_uitoa(unsigned int n);
 int		ft_handle_p(unsigned long ptr, t_flags *f);
 void	ft_handle_ptr_int(int *ptr, int count);
 
+int		ft_handle_o(unsigned int oct, t_flags *f);
+char	*ft_get_oc_str(unsigned int n);
+int		ft_count_base_oc(unsigned int n, int i);
+int		ft_get_base_count_oc(unsigned int n);
+char	*ft_set_unsigned_o_zero(char *str, int width);
+char	*ft_get_ptr_str(unsigned int n);
 
 #endif

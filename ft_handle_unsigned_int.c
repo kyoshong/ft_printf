@@ -20,13 +20,11 @@ int		ft_handle_bigx(unsigned int bigx, t_flags *f)
 	if (bigx == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
-	{
 		tem_str = ft_get_upper_str(bigx);
-		if (f->dot_n > (int)ft_strlen(tem_str))
-			tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
-		if (f->hash && bigx > 0)
-			tem_str = ft_strjoin("0X", tem_str);
-	}
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
+	if (f->hash && bigx > 0)
+		tem_str = ft_strjoin("0X", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
 		if(f->dot_n < 0 && f->zero && f->hash && !f->left_sort)
@@ -48,13 +46,11 @@ int		ft_handle_smallx(unsigned int smallx, t_flags *f)
 	if (smallx == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
-	{
 		tem_str = ft_get_lower_str(smallx);
-		if (f->dot_n > (int)ft_strlen(tem_str))
-			tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
-		if (f->hash && smallx > 0)
-			tem_str = ft_strjoin("0x", tem_str);
-	}
+	if (f->dot_n > (int)ft_strlen(tem_str))
+		tem_str = ft_set_unsigned_int_dot_n(tem_str, f);
+	if (f->hash && smallx > 0)
+		tem_str = ft_strjoin("0x", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
 		if(f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)

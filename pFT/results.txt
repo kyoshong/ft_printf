@@ -1,0 +1,62 @@
+Test 173 (p_null) : FAILED.
+    First line of code: {return test("%p", NULL);}
+      expected output : "0x0"
+      your output     : "0x100"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x100"
+
+Test 174 (notrequired_p_ftfc_literal_9w_prec2_undefbehav) : FAILED.
+    First line of code: {return test("%9.2p
+", 1234);}
+      expected output : "    0x4d2
+"
+      your output     : "  0x104d2
+"
+      expected (nonprintable as hex) : "    0x4d2\x0a"
+      actual   (nonprintable as hex) : "  0x104d2\x0a"
+
+Test 175 (notrequired_p_ftfc_literal_2w_prec9_undefbehav) : FAILED.
+    First line of code: {return test("%2.9p
+", 1234);}
+      expected output : "0x0000004d2
+"
+      your output     : "0x0000104d2
+"
+      expected (nonprintable as hex) : "0x0000004d2\x0a"
+      actual   (nonprintable as hex) : "0x0000104d2\x0a"
+
+Test 176 (notrequired_p_ftfc_zero_prec5_undefbehav) : FAILED.
+    First line of code: {return test("%.5p", 0);}
+      expected output : "0x00000"
+      your output     : "0x00100"
+      expected (nonprintable as hex) : "0x00000"
+      actual   (nonprintable as hex) : "0x00100"
+
+Test 178 (p_ftfc_5w_throwswarning) : FAILED.
+    First line of code: {return test("%5p", 0);}
+      expected output : "  0x0"
+      your output     : "0x100"
+      expected (nonprintable as hex) : "  0x0"
+      actual   (nonprintable as hex) : "0x100"
+
+Test 585 (moul_mix_1) : FAILED.
+    First line of code: {int r00 = 0; return test("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p", 100, "Ly", &r00);}
+      expected output : "Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 0x16dddb3dc"
+      your output     : "Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 0x106dddb3dc"
+      expected (nonprintable as hex) : "Lalalala, 100% des gens qui parlent \xc3\xa0 Ly adorent Ly. Ou Presque. 0x16dddb3dc"
+      actual   (nonprintable as hex) : "Lalalala, 100% des gens qui parlent \xc3\xa0 Ly adorent Ly. Ou Presque. 0x106dddb3dc"
+
+Test 1259 (p_neg_prec_star_03) : FAILED.
+    First line of code: {return test("%.*p", -3, 0);}
+      expected output : "0x0"
+      your output     : "0x100"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x100"
+
+Test 1260 (p_neg_prec_star_04) : FAILED.
+    First line of code: {return test("%.*p", -1, 0);}
+      expected output : "0x0"
+      your output     : "0x100"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x100"
+

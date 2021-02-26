@@ -12,16 +12,17 @@ int main()
 	// printf("%1.0s\n", i);
 	//printf("%s\n", i);
 	//int a = printf("%2$s, %1$s\n", i, c);
-	int aaa = 10;
+	int aaa = 1010101;
 	int *ptr = &aaa;
-	int **p = &ptr;
 	int aa = 1;
 	int *bbb = &aa;
 	
 	
-	printf("%d\n", aaa);
-	p = &bbb;
-	printf("%d\n", aaa);
+	printf("%.0p\n", "aaa");
+	ft_printf("%.0p\n", "aaa");
+
+	*ptr = 1;
+	//printf("%#o\n", aaa);
 	aaa = 10;
 	// ft_printf("%d\n", aaa);
 	// ft_printf("1234%n\n", ptr);

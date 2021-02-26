@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 02:52:22 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:41:20 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_flags	ft_set_flags(void)
 int	ft_format_spec_check(char f)
 {
 	return (f == 's' || f == 'c' || f == 'd' || f == 'i' || f == 'p' ||
-			f == 'x' || f == 'X' || f == 'u' || f == 'n' || f == '%');
+			f == 'o' || f == 'x' || f == 'X' || f == 'u' || f == '%');
 }
 
 int	ft_flag_check(char f)
@@ -53,6 +53,8 @@ int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 		count = ft_handle_smallx(va_arg(*ap, unsigned int), flags);
 	else if (c == 'X')
 		count = ft_handle_bigx(va_arg(*ap, unsigned int), flags);
+	else if (c == 'o')
+		count = ft_handle_o(va_arg(*ap, unsigned int), flags);
 	else if (c == 'u')
 		count = ft_handle_u(va_arg(*ap, unsigned int), flags);
 	else if (c == 'p')

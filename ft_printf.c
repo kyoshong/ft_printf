@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:00 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 03:12:01 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 03:23:22 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int		ft_make_format(va_list *ap, int i, char *arg)
 			if (ft_format_spec_check(arg[i]))
 				count += ft_format_spec(arg[i], ap, i, &flags);
 			else if (arg[i] == 'n')
-				ptr = va_arg(*ap, int *);
-				ptr = count;
+				ft_handle_ptr_int(va_arg(*ap, int *), count);
 		}
 		else if (arg[i] != '%')
 		{

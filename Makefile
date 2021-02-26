@@ -15,6 +15,7 @@ SRC=ft_convert_base.c \
 	ft_handle_str.c \
 	ft_handle_ptr.c \
 	ft_handle_int.c \
+	ft_handle_o.c \
 
 OBJ=$(SRC:.c=.o)
 

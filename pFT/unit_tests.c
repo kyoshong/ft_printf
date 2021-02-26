@@ -702,7 +702,6 @@ int new2019_negstar_9(void){return test("%0*i", -7, -54);}
 ** 					NO CRASH / NO SEGFAULT TESTS (NOT REQUIRED)
 ** ---------------------------------------------------------------------------*/
 //No-crash-no-segfault test
-int nocrash_notrequired_noarg_2(void){return test("%0"); }
 int nocrash_notrequired_noarg_3(void){return test("% "); }
 int nocrash_notrequired_noarg_5(void){return test("%-"); }
 int nocrash_notrequired_noarg_6(void){return test("%+"); }
@@ -1847,6 +1846,146 @@ int bonus_n_format_only_w_prec(void){return test("pft%5.5ntest", &n); (void)n;}
 int bonus_n_format_only_prec_star(void){return test("pft%.*ntest%d", 5, &n, 123); (void)n;}
 int bonus_n_format_only_w_star(void){return test("pft%*.ntest%d", 5, &n, 123); (void)n;}
 int bonus_n_format_only_wprec_star(void){return test("pft%*.*ntest%d", 5, 5, &n, 123); (void)n;}
+
+int nocrash_notrequired_noarg_25(void){return test("%o"); }
+int nocrash_notrequired_nullarg_25(void){return test("%o", NULL); }
+int bonus_mix_successive_1(void){return ( test("%o", mx_u) + test("%%"));}
+
+/* -----------------------------------------------------------------------------
+** 						%o OCTALS TESTS (NOT IN THE SUBJECT)
+** ---------------------------------------------------------------------------*/
+//Octals - no modifers
+int notinsubject_o_basic_octl_pos(void){return test("this %o number", 17);}
+int notinsubject_o_basic_octl_zero(void){return test("this %o number", 0);}
+int notinsubject_o_basic_octl_onlypos(void){return test("%o", 3);}
+int notinsubject_o_octlmax(void){return test("%o", 4294967295u);}
+//Octals with field width
+int notinsubject_o_width_pos_fits(void){return test("%7o", 33);}
+int notinsubject_o_width_zero_fits(void){return test("%3o", 0);}
+int notinsubject_o_width_pos_exactfit(void){return test("%6o", 52625);}
+int notinsubject_o_width_pos_nofit(void){return test("%2o", 94827);}
+int notinsubject_o_width_pos_fits_lj(void){return test("%-7o", 33);}
+int notinsubject_o_width_zero_fits_lj(void){return test("%-3o", 0);}
+int notinsubject_o_width_pos_exactfit_lj(void){return test("%-6o", 52625);}
+int notinsubject_o_width_pos_nofit_lj(void){return test("%-4o", 9648627);}
+//Octals with precision
+int notinsubject_o_prec_fits_pos(void){return test("%.5o", 21);}
+int notinsubject_o_prec_fits_zero(void){return test("%.3o", 0);}
+int notinsubject_o_prec_exactfit_pos(void){return test("%.5o", 5263);}
+int notinsubject_o_prec_nofit_pos(void){return test("%.3o", 938862);}
+//Octals with zero field width padding
+int notinsubject_o_zp_pos_fits(void){return test("%05o", 43);}
+int notinsubject_o_zp_zero_fits(void){return test("%03o", 0);}
+int notinsubject_o_zp_pos_exactfit(void){return test("%07o", 698334);}
+//Octals with field width and precision
+int notinsubject_o_prec_width_fit_fit_pos(void){return test("%8.5o", 34);}
+int notinsubject_o_prec_width_fit_fit_zero(void){return test("%8.5o", 0);}
+int notinsubject_o_prec_width_nofit_fit_pos(void){return test("%8.3o", 8375);}
+int notinsubject_o_prec_width_fit_nofit_pos(void){return test("%2.7o", 3267);}
+int notinsubject_o_prec_width_nofit_nofit_pos(void){return test("%3.3o", 6983);}
+//Octals with field width and precision, left-justified
+int notinsubject_o_prec_width_fit_fit_pos_lj(void){return test("%-8.5o", 34);}
+int notinsubject_o_prec_width_fit_fit_zero_lj(void){return test("%-8.5o", 0);}
+int notinsubject_o_prec_width_nofit_fit_pos_lj(void){return test("%-8.3o", 8375);}
+int notinsubject_o_prec_width_fit_nofit_pos_lj(void){return test("%-2.7o", 3267);}
+int notinsubject_o_prec_width_nofit_nofit_pos_lj(void){return test("%-3.3o", 6983);}
+//Octals with field width and precision with zeropadding
+int notinsubject_o_prec_width_ff_pos_zp(void){return test("%08.5o", 34);}
+int notinsubject_o_prec_width_ff_zero_zp(void){return test("%08.5o", 0);}
+int notinsubject_o_prec_width_nf_pos_zp(void){return test("%08.3o", 8375);}
+int notinsubject_o_prec_width_fn_pos_zp(void){return test("%02.7o", 3267);}
+int notinsubject_o_prec_width_nn_pos_zp(void){return test("%03.3o", 6983);}
+//Octals with field width and precision, left-justified with zeropadding
+int notinsubject_o_prec_width_ff_pos_ljzp_ignoreflag(void){return test("%0-8.5o", 34);}
+int notinsubject_o_prec_width_ff_zero_ljzp_ignoreflag(void){return test("%0-8.5o", 0);}
+int notinsubject_o_prec_width_nf_pos_ljzp_ignoreflag(void){return test("%0-8.3o", 8375);}
+int notinsubject_o_prec_width_fn_pos_ljzp_ignoreflag(void){return test("%0-2.7o", 3267);}
+int notinsubject_o_prec_width_nn_pos_ljzp_ignoreflag(void){return test("%0-3.3o", 6983);}
+
+
+//Octal (Altform)s - no modifers
+int notinsubject_o_basic_octl_pos_af(void){return test("this %#o number", 17);}
+int notinsubject_o_basic_octl_zero_af(void){return test("this %#o number", 0);}
+int notinsubject_o_basic_octl_onlypos_af(void){return test("%#o", 3);}
+int notinsubject_o_octlmax_af(void){return test("%#o", 4294967295u);}
+//Octal (Altform)s with field width
+int notinsubject_o_width_pos_fits_af(void){return test("%#7o", 33);}
+int notinsubject_o_width_zero_fits_af(void){return test("%#3o", 0);}
+int notinsubject_o_width_pos_exactfit_af(void){return test("%#6o", 52625);}
+int notinsubject_o_width_pos_nofit_af(void){return test("%#2o", 94827);}
+int notinsubject_o_width_pos_fits_lj_af(void){return test("%#-7o", 33);}
+int notinsubject_o_width_zero_fits_lj_af(void){return test("%#-3o", 0);}
+int notinsubject_o_width_pos_exactfit_lj_af(void){return test("%#-6o", 52625);}
+int notinsubject_o_width_pos_nofit_lj_af(void){return test("%#-4o", 9648627);}
+//Octal (Altform)s with precision
+int notinsubject_o_prec_fits_pos_af(void){return test("%#.5o", 21);}
+int notinsubject_o_prec_fits_zero_af(void){return test("%#.3o", 0);}
+int notinsubject_o_prec_exactfit_pos_af(void){return test("%#.5o", 5263);}
+int notinsubject_o_prec_nofit_pos_af(void){return test("%#.3o", 938862);}
+//Octal (Altform)s with zero field width padding
+int notinsubject_o_zp_pos_fits_af(void){return test("%#05o", 43);}
+int notinsubject_o_zp_zero_fits_af(void){return test("%#03o", 0);}
+int notinsubject_o_zp_pos_exactfit_af(void){return test("%#07o", 698334);}
+//Octal (Altform)s with field width and precision
+int notinsubject_o_prec_width_fit_fit_pos_af(void){return test("%#8.5o", 34);}
+int notinsubject_o_prec_width_fit_fit_zero_af(void){return test("%#8.5o", 0);}
+int notinsubject_o_prec_width_nofit_fit_pos_af(void){return test("%#8.3o", 8375);}
+int notinsubject_o_prec_width_fit_nofit_pos_af(void){return test("%#2.7o", 3267);}
+int notinsubject_o_prec_width_nofit_nofit_pos_af(void){return test("%#3.3o", 6983);}
+//Octal (Altform)s with field width and precision, left-justified
+int notinsubject_o_prec_width_fit_fit_pos_lj_af(void){return test("%#-8.5o", 34);}
+int notinsubject_o_prec_width_fit_fit_zero_lj_af(void){return test("%#-8.5o", 0);}
+int notinsubject_o_prec_width_nofit_fit_pos_lj_af(void){return test("%#-8.3o", 8375);}
+int notinsubject_o_prec_width_fit_nofit_pos_lj_af(void){return test("%#-2.7o", 3267);}
+int notinsubject_o_prec_width_nofit_nofit_pos_lj_af(void){return test("%#-3.3o", 6983);}
+//Octal (Altform)s with field width and precision with zeropadding
+int notinsubject_o_prec_width_ff_pos_zp_af(void){return test("%#08.5o", 34);}
+int notinsubject_o_prec_width_ff_zero_zp_af(void){return test("%#08.5o", 0);}
+int notinsubject_o_prec_width_nf_pos_zp_af(void){return test("%#08.3o", 8375);}
+int notinsubject_o_prec_width_fn_pos_zp_af(void){return test("%#02.7o", 3267);}
+int notinsubject_o_prec_width_nn_pos_zp_af(void){return test("%#03.3o", 6983);}
+//Octal (Altform)s with field width and precision, left-justified with zeropadding
+int notinsubject_o_prec_width_ff_pos_ljzpaf_ignoreflag(void){return test("%#0-8.5o", 34);}
+int notinsubject_o_prec_width_ff_zero_ljzpaf_ignoreflag(void){return test("%#0-8.5o", 0);}
+int notinsubject_o_prec_width_nf_pos_ljzpaf_ignoreflag(void){return test("%#0-8.3o", 8375);}
+int notinsubject_o_prec_width_fn_pos_ljzpaf_ignoreflag(void){return test("%#0-2.7o", 3267);}
+int notinsubject_o_prec_width_nn_pos_ljzpaf_ignoreflag(void){return test("%#0-3.3o", 6983);}
+//Octals - zero precision zero value
+int notinsubject_o_prec0val0_basic(void){return test("%.0o", 0);}
+int notinsubject_o_prec0val0_implicit(void){return test("%.o", 0);}
+int notinsubject_o_prec0val0_w(void){return test("%5.0o", 0);}
+int notinsubject_o_prec0val0_w_impl(void){return test("%5.o", 0);}
+int notinsubject_o_prec0val0_wlj(void){return test("%-5.0o", 0);}
+int notinsubject_o_prec0val0_wlj_impl(void){return test("%-5.o", 0);}
+int notinsubject_o_prec0val0_af(void){return test("%#.0o", 0);}
+int notinsubject_o_prec0val0_af_impl(void){return test("%#.o", 0);}
+int notinsubject_o_prec0val0_waf(void){return test("%#5.0o", 0);}
+int notinsubject_o_prec0val0_waf_impl(void){return test("%#5.o", 0);}
+int notinsubject_o_prec0val0_waflj(void){return test("%#-5.0o", 0);}
+int notinsubject_o_prec0val0_waflj_impl(void){return test("%#-5.o", 0);}
+
+int nocrash_notinsubject_notrequired_o_sp(void){return test("% o", 42);}
+int nocrash_notinsubject_notrequired_o_lj_nowidth(void){return test("%-o", 42);}
+int nocrash_notinsubject_notrequired_o_as(void){return test("%+o", 42);}
+
+int notinsubject_moul_o_1(void){return test("%o", 42);}
+int notinsubject_moul_o_2(void){return test("Kashim a %o histoires à raconter", 1001);}
+int notinsubject_moul_o_3(void){return test("Il fait au moins %o\n", -8000);}
+int notinsubject_moul_o_4(void){return test("%o", -0);}
+int notinsubject_moul_o_5(void){return test("%o", 0);}
+int notinsubject_moul_o_6(void){return test("%o", INT_MAX);}
+int notinsubject_moul_o_7(void){return test("%o", INT_MIN);}
+int notinsubject_moul_o_8(void){return test("%o", INT_MIN - 1);}
+int notinsubject_moul_o_9(void){return test("%o", INT_MAX + 1);}
+int notinsubject_moul_o_10(void){return test("%%o 0000042 == |%o|\n", 0000042);}
+int notinsubject_moul_o_11(void){return test("%%o \t == |%o|\n", '\t');}
+int notinsubject_moul_o_12(void){return test("%%o Lydie == |%o|\n", 'L'+'y'+'d'+'i'+'e');}
+int notinsubject_moul_o_hash_3(void){return test("%%#o 0 ==  %#o\n", 0);}
+int notinsubject_moul_o_hash_4(void){return test("%%o 0 ==  %o\n", 0);}
+int notinsubject_moul_o_hash_5(void){return test("%%#o INT_MAX ==  %#o\n", INT_MAX);}
+int notinsubject_moul_o_hash_6(void){return test("%%o INT_MAX ==  %o\n", INT_MAX);}
+int notinsubject_moul_o_hash_7(void){return test("%%#o INT_MIN ==  %#o\n", INT_MIN);}
+int notinsubject_moul_o_hash_8(void){return test("%%o INT_MIN ==  %o\n", INT_MIN);}
 
 #pragma clang diagnostic pop
 
