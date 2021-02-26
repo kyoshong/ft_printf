@@ -14,21 +14,21 @@ int main()
 	//int a = printf("%2$s, %1$s\n", i, c);
 	int aaa = 1010101;
 	int *ptr = &aaa;
-	int aa = 1;
-	int *bbb = &aa;
-	
-	
-	printf("%.0p\n", "aaa");
-	ft_printf("%.0p\n", "aaa");
+	char  *s = "123";
+	//int *bbb = &aa;
 
+
+	//printf("%.0p\n", "aaa");
+	// ft_printf("%.0p\n", "aaa");
+	ft_printf("-->|%-16.*s|<--\n", 0, s);
 	*ptr = 1;
 	//printf("%#o\n", aaa);
 	aaa = 10;
 	// ft_printf("%d\n", aaa);
 	// ft_printf("1234%n\n", ptr);
 	// ft_printf("%d\n", aaa);
-	
-	
+
+
  	//ft_printf("%9p", i);
 
 	//printf("\n%p", a);

@@ -18,15 +18,18 @@ int		ft_handle_str(char *str, t_flags *f)
 	char	*fin_str;
 	int		width;
 
-	if (!str)
-		fin_str = ft_strdup("(null)");
-	else
-		fin_str = ft_strdup(str);
-	if (f->dot_n > 0)
-		fin_str[f->dot_n] = '\0';
 	if (f->dot_n == 0)
-		fin_str = "";
-	if ((width = f->width - ft_strlen(fin_str)) > 0)
+		fin_str = 0;
+	else
+	{
+		if (!str)
+		fin_str = ft_strdup("(null)");
+		else
+			fin_str = ft_strdup(str);
+		if (f->dot_n > 0)
+			fin_str[f->dot_n] = '\0';
+	}
+	if ((width = f->width - (int)ft_strlen(fin_str)) > 0)
 	{
 		if(f->dot_n < 0 && f->zero && f->left_sort == 0)
 			fin_str = ft_str_zero_set(fin_str, width);

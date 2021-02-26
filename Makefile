@@ -30,15 +30,15 @@ $(NAME): $(OBJ)
 	mv libft.a $(NAME)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-	
+
 all: $(NAME)
 
 clean:
-	$(MAKE) clean -C ./libft
+	$(MAKE) -C ./libft clean
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(MAKE) fclean -C ./libft
+	$(MAKE) -C ./libft fclean
 	$(RM) $(NAME)
 
 re: fclean all

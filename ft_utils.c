@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 15:41:20 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:22:49 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_flags	ft_set_flags(void)
 {
 	t_flags	flags;
-	
+
 	flags.width = 0;
 	flags.zero = 0;
 	flags.left_sort = 0;
@@ -34,7 +34,7 @@ int	ft_format_spec_check(char f)
 
 int	ft_flag_check(char f)
 {
-	return (f == '-' || f == ' ' || f == '+' || f == '#' || 
+	return (f == '-' || f == ' ' || f == '+' || f == '#' ||
 			f == '*' || f == '.'|| (f >= 48 && f <= 57));
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 15:41:29 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:13:01 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_handle_p(unsigned long ptr, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	if (!ptr && f->dot_n == 0)
 		tem_str = ft_strdup("");
 	else
@@ -49,7 +49,7 @@ char	*ft_get_ptr_str(unsigned int n)
 	if (!(str = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	base = "0123456789abcdef";
-	while (n > 16) 
+	while (n > 16)
 	{
 		str[i] =  base[n % 16];
 		n /= 16;
@@ -58,7 +58,7 @@ char	*ft_get_ptr_str(unsigned int n)
 	str[i++] = base[n];
 	str[i] = '\0';
 	str = ft_strrev(str);
-	str = ft_strjoin("10", str);
+	//str = ft_strjoin("10", str);
 	return (str);
 }
 
@@ -71,7 +71,7 @@ int		ft_handle_percent(t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	tem_str = "%";
 	if ((width = f->width - 1) > 0)
 	{
