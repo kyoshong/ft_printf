@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_handle_bigx(unsigned int bigx, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	if (bigx == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
@@ -42,7 +42,7 @@ int		ft_handle_smallx(unsigned int smallx, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	if (smallx == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
@@ -53,7 +53,7 @@ int		ft_handle_smallx(unsigned int smallx, t_flags *f)
 		tem_str = ft_strjoin("0x", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)
+		if (f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)
 			tem_str = ft_set_unsigned_int_zero(tem_str, width);
 		else if (f->dot_n < 0 && f->zero && f->left_sort == 0)
 			tem_str = ft_int_width_set(tem_str, f, width, 48);
@@ -68,7 +68,7 @@ int		ft_handle_u(unsigned int u, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	if (u == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
@@ -103,7 +103,6 @@ char	*ft_set_unsigned_int_zero(char *str, int width)
 	free(empty_str);
 	return (fin_str);
 }
-
 
 char	*ft_set_unsigned_int_dot_n(char *tem_str, t_flags *f)
 {

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 14:15:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 14:58:23 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:29:28 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_handle_o(unsigned int oct, t_flags *f)
 {
 	char	*tem_str;
 	int		width;
-	
+
 	if (oct == 0 && f->dot_n == 0)
 		tem_str = "";
 	else
@@ -27,7 +27,7 @@ int		ft_handle_o(unsigned int oct, t_flags *f)
 		tem_str = ft_strjoin("0", tem_str);
 	if ((width = f->width - ft_strlen(tem_str)) > 0)
 	{
-		if(f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)
+		if (f->dot_n < 0 && f->zero && f->hash && f->left_sort == 0)
 			tem_str = ft_set_unsigned_o_zero(tem_str, width);
 		else if (f->dot_n < 0 && f->zero && f->left_sort == 0)
 			tem_str = ft_int_width_set(tem_str, f, width, 48);
@@ -63,9 +63,9 @@ char	*ft_get_oc_str(unsigned int n)
 	if (!(str = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	base = "01234567";
-	while (n > 8) 
+	while (n > 8)
 	{
-		str[i] =  base[n % 8];
+		str[i] = base[n % 8];
 		n /= 8;
 		i++;
 	}
@@ -86,7 +86,7 @@ int		ft_count_base_oc(unsigned int n, int i)
 int		ft_get_base_count_oc(unsigned int n)
 {
 	int	i;
-	
+
 	i = 0;
 	i = ft_count_base_oc(n, i);
 	return (i);

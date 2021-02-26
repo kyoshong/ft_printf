@@ -6,11 +6,11 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 20:54:00 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:31:33 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 t_flags	ft_set_flags(void)
 {
@@ -35,7 +35,7 @@ int	ft_format_spec_check(char f)
 int	ft_flag_check(char f)
 {
 	return (f == '-' || f == ' ' || f == '+' || f == '#' ||
-			f == '*' || f == '.'|| (f >= 48 && f <= 57));
+		f == '*' || f == '.' || (f >= 48 && f <= 57));
 }
 
 int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
@@ -91,7 +91,7 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 		}
 	}
 	else if (arg[i] >= 49 && arg[i] <= 57)
-		i = ft_width_set(i ,arg, f);
+		i = ft_width_set(i, arg, f);
 	else if (arg[i] == '.' && arg[i + 1])
 		i = ft_set_precision((i + 1), arg, f, ap);
 	return (i);

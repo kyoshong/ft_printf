@@ -6,11 +6,11 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:14:27 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:29:46 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_handle_p(char *ptr, t_flags *f)
 {
@@ -50,7 +50,7 @@ char	*ft_get_ptr_str(unsigned long n)
 	base = "0123456789abcdef";
 	while (n >= 16)
 	{
-		str[i] =  base[n % 16];
+		str[i] = base[n % 16];
 		n /= 16;
 		i++;
 	}
@@ -59,7 +59,6 @@ char	*ft_get_ptr_str(unsigned long n)
 	str = ft_strrev(str);
 	return (str);
 }
-
 
 void	ft_handle_ptr_int(int *ptr, int count)
 {

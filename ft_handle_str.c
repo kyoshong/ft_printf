@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_handle_str(char *str, t_flags *f)
 {
@@ -28,7 +28,7 @@ int		ft_handle_str(char *str, t_flags *f)
 		fin_str[f->dot_n] = '\0';
 	if ((width = f->width - ft_strlen(fin_str)) > 0)
 	{
-		if(f->dot_n < 0 && f->zero && !f->left_sort)
+		if (f->dot_n < 0 && f->zero && !f->left_sort)
 			fin_str = ft_str_zero_set(fin_str, width);
 		else
 			fin_str = ft_int_width_set(fin_str, f, width, 32);
@@ -56,7 +56,6 @@ int		ft_handle_char(char c, t_flags *f)
 		{
 			ft_putstr_fd(empty_str, 1);
 			ft_putchar_fd(c, 1);
-
 		}
 		width = ft_strlen(empty_str);
 		free(empty_str);

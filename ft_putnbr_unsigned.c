@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 03:46:02 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/22 13:42:43 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:30:43 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_print_putnbr(int n , int i)
+int		ft_print_putnbr(int n, int i)
 {
 	if (n > 9)
 		i += ft_print_putnbr(n / 10, i);

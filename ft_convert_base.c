@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:14:14 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:24:05 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ char	*ft_get_upper_str(unsigned int n)
 	base = "0123456789ABCDEF";
 	while (n >= 16)
 	{
-		str[i] =  base[n % 16];
+		str[i] = base[n % 16];
 		n /= 16;
 		i++;
 	}
-	str[i++] =  base[n];
+	str[i++] = base[n];
 	str[i] = '\0';
 	str = ft_strrev(str);
 	return (str);
@@ -50,7 +50,7 @@ char	*ft_get_lower_str(unsigned int n)
 	base = "0123456789abcdef";
 	while (n >= 16)
 	{
-		str[i] =  base[n % 16];
+		str[i] = base[n % 16];
 		n /= 16;
 		i++;
 	}

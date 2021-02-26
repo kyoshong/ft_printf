@@ -6,11 +6,11 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 22:22:17 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 17:21:06 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:30:56 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_width_set(int i, const char *arg, t_flags *flags)
 {
@@ -38,7 +38,7 @@ int		ft_width_set(int i, const char *arg, t_flags *flags)
 	return (i - 1);
 }
 
-int		ft_set_precision(int i, const char *arg, t_flags *flags,  va_list *ap)
+int		ft_set_precision(int i, const char *arg, t_flags *flags, va_list *ap)
 {
 	char	*tem;
 	int		j;
