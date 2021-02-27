@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 03:46:02 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:30:43 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/27 20:05:27 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_print_putnbr(int n, int i)
 	return (i);
 }
 
-int	ft_putnbr(int n)
+int		ft_putnbr(int n)
 {
 	int	i;
 
@@ -47,5 +47,34 @@ int		ft_putnbr_unsigned(unsigned int n)
 
 	i = 0;
 	i = ft_print_putnbr((int)n, i);
+	return (i);
+}
+
+char	*ft_set_unsigned_int_dot_n(char *tem_str, t_flags *f)
+{
+	int		i;
+	char	*zero_str;
+
+	i = f->dot_n - ft_strlen(tem_str);
+	if (!(zero_str = malloc(sizeof(char) * i)))
+		return (0);
+	ft_memset(zero_str, 48, i);
+	tem_str = ft_strjoin(zero_str, tem_str);
+	free(zero_str);
+	return (tem_str);
+}
+
+int		ft_set_precision_util(char c, t_flags *f, va_list *ap, int i)
+{
+	if (c == '*')
+	{
+		f->dot_n = va_arg(*ap, int);
+		return (i);
+	}
+	else if (c == 'i' || c == 'd' || c == 's')
+	{
+		f->dot_n = 0;
+		return (i - 1);
+	}
 	return (i);
 }

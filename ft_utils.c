@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:31:33 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:16:02 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ t_flags	ft_set_flags(void)
 	return (flags);
 }
 
-int	ft_format_spec_check(char f)
+int		ft_format_spec_check(char f)
 {
 	return (f == 's' || f == 'c' || f == 'd' || f == 'i' || f == 'p' ||
 			f == 'o' || f == 'x' || f == 'X' || f == 'u' || f == '%');
 }
 
-int	ft_flag_check(char f)
+int		ft_flag_check(char f)
 {
 	return (f == '-' || f == ' ' || f == '+' || f == '#' ||
 		f == '*' || f == '.' || (f >= 48 && f <= 57));
@@ -64,7 +64,7 @@ int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 	return (count);
 }
 
-int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
+int		ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 {
 	if (arg[i] == '-')
 		f->left_sort = 1;
@@ -83,16 +83,10 @@ int	ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 	else if (arg[i] == '0')
 		f->zero = 1;
 	else if (arg[i] == '*')
-	{
-		if ((f->width = va_arg(*ap, int)) < 0)
-		{
-			f->width *= -1;
-			f->left_sort = 1;
-		}
-	}
+		ft_set_esterisk(f, ap);
 	else if (arg[i] >= 49 && arg[i] <= 57)
 		i = ft_width_set(i, arg, f);
 	else if (arg[i] == '.' && arg[i + 1])
-		i = ft_set_precision((i + 1), arg, f, ap);
+		i = ft_set_precision((i + 1), (char *)arg, f, ap);
 	return (i);
 }

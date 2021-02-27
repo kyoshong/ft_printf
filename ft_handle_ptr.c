@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:29:46 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:09:14 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*ft_get_ptr_str(unsigned long n)
 
 	i = 0;
 	len = ft_get_base_count(n);
-
 	if (!(str = malloc(sizeof(char) * (len + 2))))
 		return (NULL);
 	base = "0123456789abcdef";

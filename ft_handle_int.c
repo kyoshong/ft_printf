@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:28:58 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/27 17:30:45 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int		ft_handle_int(int d, t_flags *f)
 		tem_str = ft_strdup("");
 	else
 		tem_str = ft_itoa(d);
-	if (d < 0)
-		len = f->dot_n - ((int)ft_strlen(tem_str) - 1);
-	else
-		len = f->dot_n - (int)ft_strlen(tem_str);
+	len = ft_get_int_len(d, f->dot_n, ft_strlen(tem_str));
 	if (len > 0)
 		tem_str = ft_int_dot_n_set(tem_str, f, len);
 	if (f->blank && d >= 0)
@@ -58,7 +55,7 @@ char	*ft_int_dot_n_set(char *tem_str, t_flags *f, int i)
 	return (tem_str);
 }
 
-char		*ft_int_zero_set(char *str, int width)
+char	*ft_int_zero_set(char *str, int width)
 {
 	char	*empty_str;
 	char	*fin_str;

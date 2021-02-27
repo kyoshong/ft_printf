@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 14:15:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:29:28 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:10:11 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ int		ft_get_base_count_oc(unsigned int n)
 	i = ft_count_base_oc(n, i);
 	return (i);
 }
-

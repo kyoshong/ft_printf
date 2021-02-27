@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 22:22:17 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:30:56 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/27 20:04:54 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,16 @@ int		ft_width_set(int i, const char *arg, t_flags *flags)
 	return (i - 1);
 }
 
-int		ft_set_precision(int i, const char *arg, t_flags *flags, va_list *ap)
+int		ft_set_precision(int i, char *arg, t_flags *f, va_list *ap)
 {
 	char	*tem;
 	int		j;
 	int		backup;
 
 	backup = i;
-	if (arg[i] == 'i' || arg[i] == 'd' || arg[i] == 's')
+	if (arg[i] == 'i' || arg[i] == 'd' || arg[i] == 's' || arg[i] == '*')
 	{
-		flags->dot_n = 0;
-		return (i - 1);
-	}
-	if (arg[i] == '*')
-	{
-		flags->dot_n = va_arg(*ap, int);
+		i = ft_set_precision_util(arg[i], f, ap, i);
 		return (i);
 	}
 	while (arg[i] >= 48 && 57 >= arg[i])
@@ -63,7 +58,45 @@ int		ft_set_precision(int i, const char *arg, t_flags *flags, va_list *ap)
 	while (i > j)
 		tem[j++] = arg[backup++];
 	tem[j] = '\0';
-	flags->dot_n = ft_atoi(tem);
+	f->dot_n = ft_atoi(tem);
 	free(tem);
 	return (i - 1);
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*n_str;
+	int		len;
+	long	num;
+
+	num = (unsigned long)n;
+	len = cheak_size(num);
+	if (!(n_str = (char *)malloc(sizeof(char) * len)))
+		return (NULL);
+	n_str[len] = '\0';
+	while (len)
+	{
+		n_str[len - 1] = (num % 10) + '0';
+		num = num / 10;
+		len--;
+	}
+	return (n_str);
+}
+
+void	ft_set_esterisk(t_flags *f, va_list *ap)
+{
+	if ((f->width = va_arg(*ap, int)) < 0)
+	{
+		f->width *= -1;
+		f->left_sort = 1;
+	}
+}
+
+int		ft_get_int_len(int d, int dot_n, int len)
+{
+	if (d < 0)
+		len = dot_n - (len - 1);
+	else
+		len = dot_n - len;
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:45:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/25 21:30:12 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:19:51 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		cheak_size(long n)
 	return (count);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*n_str;
 	int		len;
