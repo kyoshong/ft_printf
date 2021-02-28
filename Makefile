@@ -10,6 +10,9 @@ SRC=ft_convert_base.c \
 	ft_printf.c \
 	ft_utils.c \
 	ft_utils_two.c \
+	ft_utils_three.c \
+	ft_longlong_set.c \
+	ft_change_length.c \
 	ft_putnbr_unsigned.c \
 	ft_handle_unsigned_int.c \
 	ft_handle_str.c \

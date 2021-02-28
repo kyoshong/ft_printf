@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 02:06:25 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/27 17:30:45 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 05:37:37 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*ft_join_signed(char *str, char *zero, int size)
 
 	if (!str && !zero)
 		return (NULL);
-	if (!(n_str = (char *)malloc(ft_strlen(str) + ft_strlen(zero))))
+	if (!(n_str = (char *)malloc(ft_strlen(str) + ft_strlen(zero) + 1)))
 		return (NULL);
 	i = 0;
 	j = 0;

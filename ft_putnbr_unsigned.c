@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 03:46:02 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/27 20:05:27 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 04:14:56 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		ft_set_precision_util(char c, t_flags *f, va_list *ap, int i)
 		f->dot_n = va_arg(*ap, int);
 		return (i);
 	}
-	else if (c == 'i' || c == 'd' || c == 's')
+	else
 	{
 		f->dot_n = 0;
 		return (i - 1);

@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:38:42 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 21:24:05 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 04:43:44 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_get_upper_str(unsigned int n)
+char	*ft_get_upper_str(unsigned long long n)
 {
 	char	*str;
 	char	*base;
@@ -36,7 +36,7 @@ char	*ft_get_upper_str(unsigned int n)
 	return (str);
 }
 
-char	*ft_get_lower_str(unsigned int n)
+char	*ft_get_lower_str(unsigned long long n)
 {
 	char	*str;
 	char	*base;
@@ -60,7 +60,7 @@ char	*ft_get_lower_str(unsigned int n)
 	return (str);
 }
 
-int		ft_count_base(unsigned long n, int i)
+int		ft_count_base(unsigned long long n, int i)
 {
 	if (n > 16)
 		i = ft_count_base(n / 16, i);
@@ -68,7 +68,7 @@ int		ft_count_base(unsigned long n, int i)
 	return (i);
 }
 
-int		ft_get_base_count(unsigned long n)
+int		ft_get_base_count(unsigned long long n)
 {
 	int	i;
 

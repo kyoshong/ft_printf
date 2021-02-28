@@ -6,13 +6,13 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:45:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 22:19:51 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 05:51:09 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		cheak_size(long n)
+int		cheak_size(long long int n)
 {
 	int	count;
 
@@ -25,14 +25,14 @@ int		cheak_size(long n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long int n)
 {
-	char	*n_str;
-	int		len;
-	int		s;
-	long	num;
+	char			*n_str;
+	int				len;
+	int				s;
+	long long int	num;
 
-	num = (long)n;
+	num = n;
 	s = 0;
 	if (num < 0)
 	{

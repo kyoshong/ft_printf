@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:49:09 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 22:09:14 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 04:44:13 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_handle_p(char *ptr, t_flags *f)
 	return (ft_strlen(tem_str));
 }
 
-char	*ft_get_ptr_str(unsigned long n)
+char	*ft_get_ptr_str(unsigned long long n)
 {
 	char	*str;
 	char	*base;

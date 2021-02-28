@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:57:50 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/27 00:16:02 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 05:50:58 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ t_flags	ft_set_flags(void)
 	flags.plus = 0;
 	flags.blank = 0;
 	flags.hash = 0;
+	flags.len_l = 0;
+	flags.len_h = 0;
 	return (flags);
 }
 
 int		ft_format_spec_check(char f)
 {
 	return (f == 's' || f == 'c' || f == 'd' || f == 'i' || f == 'p' ||
-			f == 'o' || f == 'x' || f == 'X' || f == 'u' || f == '%');
+		f == 'o' || f == 'x' || f == 'X' || f == 'u' || f == '%');
 }
 
 int		ft_flag_check(char f)
 {
-	return (f == '-' || f == ' ' || f == '+' || f == '#' ||
-		f == '*' || f == '.' || (f >= 48 && f <= 57));
+	return (f == '-' || f == ' ' || f == '+' || f == '#' || f == '*' ||
+		f == '.' || (f >= 48 && f <= 57) || f == 'l' || f == 'h');
 }
 
 int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
@@ -43,7 +45,9 @@ int		ft_format_spec(char c, va_list *ap, int i, t_flags *flags)
 	int		count;
 
 	count = 0;
-	if (c == 's')
+	if (flags->len_h > 0 || flags->len_l > 0)
+		count = ft_change_length_format(c, ap, i, flags);
+	else if (c == 's')
 		count = ft_handle_str(va_arg(*ap, char *), flags);
 	else if (c == 'c')
 		count = ft_handle_char((char)va_arg(*ap, int), flags);
@@ -69,15 +73,9 @@ int		ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 	if (arg[i] == '-')
 		f->left_sort = 1;
 	else if (arg[i] == ' ')
-	{
-		f->blank = 1;
-		f->plus = 0;
-	}
+		ft_exchange_val(0, 1, f);
 	else if (arg[i] == '+')
-	{
-		f->plus = 1;
-		f->blank = 0;
-	}
+		ft_exchange_val(1, 0, f);
 	else if (arg[i] == '#')
 		f->hash = 1;
 	else if (arg[i] == '0')
@@ -88,5 +86,7 @@ int		ft_flags(int i, const char *arg, t_flags *f, va_list *ap)
 		i = ft_width_set(i, arg, f);
 	else if (arg[i] == '.' && arg[i + 1])
 		i = ft_set_precision((i + 1), (char *)arg, f, ap);
+	else if (arg[i] == 'h' || arg[i] == 'l')
+		i = ft_set_length(f, (char *)arg, i);
 	return (i);
 }

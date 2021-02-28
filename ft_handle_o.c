@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 14:15:19 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 22:10:11 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 05:21:50 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_set_unsigned_o_zero(char *str, int width)
 	return (fin_str);
 }
 
-char	*ft_get_oc_str(unsigned int n)
+char	*ft_get_oc_str(unsigned long long int n)
 {
 	char	*str;
 	char	*base;
@@ -75,7 +75,7 @@ char	*ft_get_oc_str(unsigned int n)
 	return (str);
 }
 
-int		ft_count_base_oc(unsigned int n, int i)
+int		ft_count_base_oc(unsigned long long int n, int i)
 {
 	if (n > 8)
 		i = ft_count_base(n / 8, i);
@@ -83,7 +83,7 @@ int		ft_count_base_oc(unsigned int n, int i)
 	return (i);
 }
 
-int		ft_get_base_count_oc(unsigned int n)
+int		ft_get_base_count_oc(unsigned long long int n)
 {
 	int	i;
 

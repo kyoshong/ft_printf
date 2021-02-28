@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:53:45 by hyospark          #+#    #+#             */
-/*   Updated: 2021/02/26 18:08:18 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 05:38:55 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
-char			*ft_itoa(int n);
+char			*ft_itoa(long long int n);
 void			*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -57,7 +57,7 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 char			*ft_strrev(const char *s);
-int				cheak_size(long n);
+int				cheak_size(long long int n);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
