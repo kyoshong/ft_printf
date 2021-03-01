@@ -36,8 +36,6 @@ $(NAME): $(OBJ)
 
 all: $(NAME)
 
-bonus: $(NAME)
-
 clean:
 	$(MAKE) -C ./libft clean
 	$(RM) $(OBJ)
@@ -47,6 +45,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+bonus: fclean all
 
 .PHONY: clean fclean re all bonus
 

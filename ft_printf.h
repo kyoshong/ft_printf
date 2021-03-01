@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:39:26 by hyospark          #+#    #+#             */
-/*   Updated: 2021/03/01 06:33:38 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:10:26 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,7 @@ int				ft_handle_long_smallx(unsigned long long int s, t_flags *f);
 int				ft_handle_long_u(unsigned long long int u, t_flags *f);
 int				ft_handle_long_o(unsigned long long int oct, t_flags *f);
 int				cheak_size_u(unsigned long long int n);
+int				ft_handle_long_str(wchar_t *str, t_flags *f);
+int				ft_handle_long_char(wint_t c, t_flags *f);
 
 #endif

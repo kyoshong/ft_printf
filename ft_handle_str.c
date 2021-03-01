@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:15:21 by hyospark          #+#    #+#             */
-/*   Updated: 2021/03/01 06:32:45 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:19:10 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		ft_handle_long_str(wchar_t *str, t_flags *f)
 	else if (!str)
 		fin_str = ft_strdup("(null)");
 	else
-		fin_str = ft_strdup(str);
+		fin_str = ft_strdup((char *)str);
 	if (f->dot_n > 0)
 		fin_str[f->dot_n] = '\0';
 	if ((width = f->width - ft_strlen(fin_str)) > 0)

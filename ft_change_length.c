@@ -6,7 +6,7 @@
 /*   By: hyospark <hyospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 03:33:39 by hyospark          #+#    #+#             */
-/*   Updated: 2021/03/01 06:29:27 by hyospark         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:10:39 by hyospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		ft_change_l(char c, va_list *ap, int i, t_flags *f)
 	else if (c == 'u')
 		count = ft_handle_long_u(va_arg(*ap, unsigned long int), f);
 	else if (c == 'c')
-		count = ft_handle_long_char(va_arg(*ap, wint_t),f);
+		count = ft_handle_long_char(va_arg(*ap, wint_t), f);
 	else if (c == 's')
-		count = ft_handle_long_str(va_arg(*ap, wchar_t *),f);
+		count = ft_handle_long_str(va_arg(*ap, wchar_t *), f);
 	return (count);
 }
 
