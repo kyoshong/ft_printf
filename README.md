@@ -2,7 +2,8 @@
 
 ## My own printf
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FRfeWp%2Fbtq1vgAwkSB%2FVKbsn1LC7ZnyB0Z6cFcsW1%2Fimg.png)
+<img width="216" alt="스크린샷 2021-02-17 오후 7 54 26" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FRfeWp%2Fbtq1vgAwkSB%2FVKbsn1LC7ZnyB0Z6cFcsW1%2Fimg.png">
+
 ### Flags
 	
 | Flag | Description |
